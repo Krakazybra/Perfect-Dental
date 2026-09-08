@@ -1,0 +1,6 @@
+{
+  "name": "DENTA - Стоматология в Алматы",
+  "description": "Премиальная стоматология DENTA в Алматы. Услуги, имплантация, ортодонтия, цены, врачи, отзывы, до/после и онлайн запись.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
