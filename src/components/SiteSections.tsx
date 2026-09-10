@@ -148,7 +148,7 @@ export function EditorialServiceGrid() {
   const toMedia = (service: ServiceItem): MediaAsset => ({ src: service.image, avif: service.imageAvif, alt: service.imageAlt, width: 1400, height: 1050, position: service.imagePosition, source: service.imageSource ?? 'generated' });
 
   return (
-    <div className="grid gap-3 sm:gap-5 lg:grid-cols-12">
+    <div className="editorial-service-grid grid gap-3 sm:gap-5 lg:grid-cols-12">
       <Link to={`/services/${implantation.id}`} className="group relative flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-primary text-white shadow-sm sm:min-h-[520px] sm:rounded-[32px] lg:col-span-7 lg:row-span-2 lg:min-h-[620px]">
         <MediaFrame media={toMedia(implantation)} className="relative h-52 w-full shrink-0 rounded-none sm:h-64 lg:absolute lg:inset-0 lg:h-full [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.025]" />
         <div className="absolute inset-0 hidden bg-gradient-to-t from-[#0b3032] via-[#0b3032]/45 to-transparent lg:block" aria-hidden="true" />
@@ -178,7 +178,7 @@ export function EditorialServiceGrid() {
 
 export function PatientProblemGrid() {
   return (
-    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+    <div className="patient-problem-grid grid grid-cols-2 gap-3 lg:grid-cols-4">
       {PATIENT_PROBLEMS.map((problem, index) => (
         <Link key={problem.serviceId} to={`/services/${problem.serviceId}`} className={`group flex min-h-32 flex-col justify-between rounded-[20px] border p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg sm:min-h-40 sm:rounded-[22px] sm:p-5 ${index === 0 ? 'border-primary bg-primary text-white' : 'border-outline-variant/55 bg-white'}`}>
           <span className={`text-xs font-bold tracking-[.16em] ${index === 0 ? 'text-primary-fixed' : 'text-primary'}`}>0{index + 1}</span>

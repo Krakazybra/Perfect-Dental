@@ -76,6 +76,34 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .home-page .section-pad { padding-block: 3rem; }
   .home-page .section-heading { gap: .75rem; }
   .home-page .section-heading > div > p.mt-4 { margin-top: .75rem; font-size: .925rem; line-height: 1.55rem; }
+  .home-hero { position: relative; min-height: 700px; }
+  .home-hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(6,28,29,.16) 5%, rgba(6,28,29,.25) 38%, rgba(6,28,29,.96) 100%); pointer-events: none; }
+  .home-hero > .section-shell { position: relative; display: flex; width: 100%; min-height: 700px; justify-content: flex-end; padding: 5rem 1.25rem 1.5rem; }
+  .home-hero-copy { position: relative; z-index: 2; }
+  .home-hero-copy h1 { max-width: 21rem; font-size: 2.55rem; line-height: 1; }
+  .home-hero-copy > p:nth-of-type(2) { max-width: 20rem; color: rgba(255,255,255,.82); }
+  .home-hero-copy > div { display: grid; grid-template-columns: 1fr auto; }
+  .home-hero-copy > div > a { width: 3.25rem; overflow: hidden; padding-inline: 0; white-space: nowrap; font-size: 0; }
+  .home-hero-copy > div > a svg { width: 1.1rem; height: 1.1rem; }
+  .home-hero-media { position: absolute; inset: 0; z-index: 0; max-width: none; }
+  .home-hero-media > div:first-child { display: none; }
+  .home-hero-media > div:last-child { position: absolute; inset: 0; border: 0; border-radius: 0; background: transparent; padding: 0; box-shadow: none; }
+  .home-hero-media figure { height: 100%; border-radius: 0; }
+  .home-hero-media figure img { object-position: center top !important; }
+  .patient-problem-grid { display: flex; margin-inline: -1.25rem; gap: .75rem; overflow-x: auto; padding: .15rem 1.25rem 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .patient-problem-grid::-webkit-scrollbar, .editorial-service-grid::-webkit-scrollbar { display: none; }
+  .patient-problem-grid > a { min-width: min(72vw, 270px); min-height: 9rem; scroll-snap-align: start; }
+  .patient-problem-grid > a p { display: block; }
+  .editorial-service-grid { display: flex; margin-inline: -1.25rem; gap: .85rem; overflow-x: auto; padding: .15rem 1.25rem 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .editorial-service-grid > a { display: flex; min-width: min(82vw, 320px); min-height: 410px; flex-direction: column; scroll-snap-align: center; }
+  .editorial-service-grid > a > figure { order: 1; width: 100%; height: 220px; min-height: 220px; }
+  .editorial-service-grid > a > div:not([aria-hidden="true"]) { order: 2; flex: 1; }
+  .editorial-service-grid > a:nth-child(n+2) > div { padding: 1.25rem; }
+  .editorial-service-grid > a:nth-child(n+2) p.hidden { display: block; font-size: .8rem; line-height: 1.25rem; }
+  .editorial-service-grid > a:nth-child(4) span.hidden { display: block; font-size: .75rem; }
+  .home-team-collage { display: block; height: 360px; }
+  .home-team-collage > figure:first-child { position: absolute; inset: 0 auto 0 0; width: 72%; height: 340px; transform: rotate(-2deg); }
+  .home-team-collage > figure:nth-child(2) { position: absolute; right: 0; bottom: 0; z-index: 2; width: 48%; height: 225px; border: 5px solid #f0f5f3; transform: rotate(3deg); }
   .home-clinic-features > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
   .home-clinic-features article { padding: 1rem; border-radius: 1.15rem; }
   .home-clinic-features article span { width: 2.25rem; height: 2.25rem; border-radius: .75rem; }
@@ -85,6 +113,16 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .home-process li { display: grid; min-height: 0; grid-template-columns: 2rem 1fr; align-items: center; padding: 1rem; border-radius: 1.1rem; }
   .home-process li p { margin-top: 0; font-size: .925rem; line-height: 1.3rem; }
   .home-process li > span:last-child { display: none; }
+  .home-process-section { display: none; }
+  .home-equipment { margin-inline: 1.25rem; overflow: hidden; border-radius: 1.6rem; background: #124346; color: #fff; }
+  .home-equipment section { background: transparent; }
+  .home-equipment .section-shell { width: 100%; padding: 0; }
+  .home-equipment .section-shell > div:last-child { padding: 1.5rem; }
+  .home-equipment .section-title, .home-equipment .eyebrow { color: #fff; }
+  .home-equipment .section-heading p { color: rgba(255,255,255,.72) !important; }
+  .home-equipment li { color: rgba(255,255,255,.78); }
+  .home-equipment li span { background: rgba(255,255,255,.12); color: #bcebef; }
+  .home-equipment a { background: #fff; color: #124346; }
   .home-cta > section { padding: 2rem 1.25rem 6rem; }
   .home-cta .cta-panel { border-radius: 1.5rem; padding: 1.25rem; }
   .home-cta .cta-panel h2 { font-size: 1.65rem; line-height: 2rem; }

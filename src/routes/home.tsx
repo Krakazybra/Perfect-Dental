@@ -17,9 +17,9 @@ export default function HomeRoute() {
   const { openAppointment } = useAppointment();
   return (
     <div className="home-page">
-      <section className="hero-grid overflow-hidden bg-primary text-white">
+      <section className="home-hero hero-grid overflow-hidden bg-primary text-white">
         <div className="section-shell grid items-center gap-8 py-10 md:min-h-[650px] md:gap-12 md:py-14 lg:grid-cols-[1.06fr_.94fr] lg:py-20">
-          <div>
+          <div className="home-hero-copy">
             <p className="eyebrow text-primary-fixed">Perfect Dental · Астана</p>
             <h1 className="mt-4 max-w-3xl text-balance text-[2.45rem] font-bold leading-[1.03] tracking-[-0.05em] sm:text-5xl md:mt-5 md:text-6xl lg:text-7xl">Современная стоматология в Астане</h1>
             <p className="mt-4 max-w-xl text-base leading-7 text-white/75 md:mt-6 md:text-lg">Лечение под микроскопом, имплантация, коронки, брекеты и диагностика в одной клинике.</p>
@@ -29,7 +29,7 @@ export default function HomeRoute() {
             </div>
             <p className="mt-5 hidden text-sm text-white/60 sm:block">Стоимость лечения определяется после консультации и диагностики.</p>
           </div>
-          <div className="relative mx-auto w-full max-w-[360px] md:max-w-[460px]">
+          <div className="home-hero-media relative mx-auto w-full max-w-[360px] md:max-w-[460px]">
             <div className="absolute -inset-10 rounded-full bg-primary-fixed/10 blur-3xl" aria-hidden="true" />
             <div className="relative overflow-hidden rounded-[28px] border border-white/15 bg-white/10 p-2 shadow-2xl backdrop-blur md:rounded-[34px] md:p-3">
               <MediaFrame media={HERO_MEDIA} eager className="aspect-[4/5] rounded-[21px] bg-white md:aspect-[2/3] md:rounded-[25px]" />
@@ -45,11 +45,11 @@ export default function HomeRoute() {
           <div><p className="eyebrow text-primary">Популярные направления</p><h2 className="mt-3 max-w-4xl text-balance text-3xl font-bold leading-[1.06] tracking-[-.04em] sm:text-4xl md:text-6xl">Лечение, восстановление и эстетика</h2></div>
           <p className="hidden text-base leading-7 text-on-surface-variant sm:block md:pb-1">Четыре направления, с которых пациенты чаще всего начинают знакомство с клиникой.</p>
         </div>
-        <div className="mt-10"><EditorialServiceGrid /></div>
+        <div className="mt-8 md:mt-10"><EditorialServiceGrid /></div>
       </section>
 
       <SplitSection tone="soft" media={
-        <div className="relative grid grid-cols-2 gap-4">
+        <div className="home-team-collage relative grid grid-cols-2 gap-4">
           <MediaFrame media={TEAM_MEDIA_02} className="aspect-[2/3] rounded-[28px] bg-white shadow-xl" />
           <MediaFrame media={TEAM_MEDIA_03} className="aspect-[2/3] rounded-[28px] bg-white shadow-xl" />
           <div className="col-span-2 hidden items-center gap-5 rounded-[24px] bg-primary p-5 text-white shadow-lg sm:flex md:p-6">
@@ -65,26 +65,31 @@ export default function HomeRoute() {
           { icon: HeartHandshake, title: 'Понятная коммуникация', description: 'Обсуждаем этапы и отвечаем на вопросы до начала процедур.' },
           { icon: ShieldCheck, title: 'Только по показаниям', description: 'Оборудование и методы применяются тогда, когда это обосновано врачом.' },
         ]} /></div>
+        <ol className="home-journey-mobile mt-6 grid gap-2 md:hidden" aria-label="Первые этапы лечения">
+          {['Консультация', 'Диагностика', 'Понятный план'].map((step, index) => <li key={step} className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold"><span className="grid size-7 place-items-center rounded-full bg-primary text-[10px] text-white">0{index + 1}</span>{step}</li>)}
+        </ol>
       </SplitSection>
 
-      <section className="section-shell section-pad">
+      <section className="home-process-section section-shell section-pad">
         <SectionHeading eyebrow="Путь пациента" title="Как начинается лечение" description="Без лишней спешки: сначала собираем информацию, затем предлагаем понятный план действий." align="center" />
         <div className="home-process mt-8 md:mt-10"><ProcessSteps items={['Консультация и знакомство', 'Диагностика по показаниям', 'План и стоимость лечения', 'Лечение и контроль результата']} /></div>
       </section>
 
-      <SplitSection reverse media={
-        <div className="relative">
-          <MediaFrame media={DIAGNOSTICS_MEDIA} className="aspect-[4/3] rounded-[24px] bg-black shadow-xl md:aspect-[16/10] md:rounded-[30px]" />
-          <div className="absolute -bottom-5 -left-3 hidden max-w-[250px] rounded-2xl border border-white/60 bg-white/95 p-5 shadow-xl backdrop-blur sm:block md:-left-7">
-            <ClipboardCheck className="size-6 text-primary" aria-hidden="true" />
-            <p className="mt-3 text-sm font-bold">Больше данных для индивидуального планирования</p>
+      <div className="home-equipment">
+        <SplitSection reverse media={
+          <div className="relative">
+            <MediaFrame media={DIAGNOSTICS_MEDIA} className="aspect-[4/3] rounded-[24px] bg-black shadow-xl md:aspect-[16/10] md:rounded-[30px]" />
+            <div className="absolute -bottom-5 -left-3 hidden max-w-[250px] rounded-2xl border border-white/60 bg-white/95 p-5 shadow-xl backdrop-blur sm:block md:-left-7">
+              <ClipboardCheck className="size-6 text-primary" aria-hidden="true" />
+              <p className="mt-3 text-sm font-bold">Больше данных для индивидуального планирования</p>
+            </div>
           </div>
-        </div>
-      }>
-        <SectionHeading eyebrow="Оснащение клиники" title="Технологии помогают врачу видеть больше" description="Диагностика, увеличение и цифровые инструменты дают дополнительные данные для планирования и контроля лечения." />
-        <div className="mt-7"><BenefitsList items={['Лазер Doctor Smile Pluser', 'Цифровая 3D-диагностика', 'Внутриротовое сканирование', 'Лечение корневых каналов под микроскопом']} /></div>
-        <Link to="/equipment" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white">Подробнее об оборудовании <ArrowRight className="size-4" aria-hidden="true" /></Link>
-      </SplitSection>
+        }>
+          <SectionHeading eyebrow="Оснащение клиники" title="Технологии помогают врачу видеть больше" description="Диагностика, увеличение и цифровые инструменты дают дополнительные данные для планирования и контроля лечения." />
+          <div className="mt-7"><BenefitsList items={['Лазер Doctor Smile Pluser', 'Цифровая 3D-диагностика', 'Внутриротовое сканирование', 'Лечение корневых каналов под микроскопом']} /></div>
+          <Link to="/equipment" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white">Подробнее об оборудовании <ArrowRight className="size-4" aria-hidden="true" /></Link>
+        </SplitSection>
+      </div>
 
       <section className="section-shell section-pad">
         <SectionHeading eyebrow="Отзывы пациентов" title="Опыт, которым делятся люди" description="Публикуем короткие выдержки, а оригинальные тексты всегда можно проверить в карточке клиники." action={<a href={`${TWO_GIS_URL}/tab/reviews`} target="_blank" rel="noreferrer" className="text-sm font-semibold text-primary">Все отзывы в 2GIS →</a>} />
