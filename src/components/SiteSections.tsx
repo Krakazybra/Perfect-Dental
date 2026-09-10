@@ -148,29 +148,29 @@ export function EditorialServiceGrid() {
   const toMedia = (service: ServiceItem): MediaAsset => ({ src: service.image, avif: service.imageAvif, alt: service.imageAlt, width: 1400, height: 1050, position: service.imagePosition, source: service.imageSource ?? 'generated' });
 
   return (
-    <div className="grid gap-5 lg:grid-cols-12">
-      <Link to={`/services/${implantation.id}`} className="group relative flex min-h-[520px] flex-col overflow-hidden rounded-[32px] bg-primary text-white shadow-sm lg:col-span-7 lg:row-span-2 lg:min-h-[620px]">
-        <MediaFrame media={toMedia(implantation)} className="relative h-64 w-full shrink-0 rounded-none lg:absolute lg:inset-0 lg:h-full [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.025]" />
+    <div className="grid gap-3 sm:gap-5 lg:grid-cols-12">
+      <Link to={`/services/${implantation.id}`} className="group relative flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-primary text-white shadow-sm sm:min-h-[520px] sm:rounded-[32px] lg:col-span-7 lg:row-span-2 lg:min-h-[620px]">
+        <MediaFrame media={toMedia(implantation)} className="relative h-52 w-full shrink-0 rounded-none sm:h-64 lg:absolute lg:inset-0 lg:h-full [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.025]" />
         <div className="absolute inset-0 hidden bg-gradient-to-t from-[#0b3032] via-[#0b3032]/45 to-transparent lg:block" aria-hidden="true" />
-        <div className="relative mt-auto flex w-full items-end justify-between gap-6 bg-primary p-7 md:p-9 lg:bg-transparent">
-          <div className="max-w-xl"><p className="eyebrow text-primary-fixed">Нужен имплант</p><h3 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-4xl">{implantation.title}</h3><p className="mt-4 max-w-lg text-sm leading-6 text-white/75 md:text-base">{implantation.description}</p></div>
+        <div className="relative mt-auto flex w-full items-end justify-between gap-4 bg-primary p-5 sm:gap-6 sm:p-7 md:p-9 lg:bg-transparent">
+          <div className="max-w-xl"><p className="eyebrow text-primary-fixed">Нужен имплант</p><h3 className="mt-2 text-2xl font-bold leading-tight tracking-tight sm:mt-3 sm:text-3xl md:text-4xl">{implantation.title}</h3><p className="mt-3 line-clamp-2 max-w-lg text-sm leading-6 text-white/75 sm:mt-4 sm:line-clamp-none md:text-base">{implantation.description}</p></div>
           <ServiceArrow light />
         </div>
       </Link>
 
-      <Link to={`/services/${orthopedics.id}`} className="surface-card group grid min-h-[300px] overflow-hidden sm:grid-cols-[.92fr_1.08fr] lg:col-span-5">
-        <div className="flex flex-col justify-between p-6 md:p-7"><div><p className="eyebrow text-primary">02 · Эстетика и функция</p><h3 className="mt-3 text-2xl font-bold leading-tight tracking-tight">{orthopedics.title}</h3></div><div className="mt-6 flex items-end justify-between gap-4"><p className="text-sm leading-6 text-on-surface-variant">Цифровое планирование формы и функции.</p><ServiceArrow /></div></div>
-        <MediaFrame media={toMedia(orthopedics)} className="min-h-60 rounded-none sm:min-h-full [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.035]" />
+      <Link to={`/services/${orthopedics.id}`} className="surface-card group grid min-h-[180px] grid-cols-[108px_1fr] overflow-hidden sm:min-h-[300px] sm:grid-cols-[.92fr_1.08fr] lg:col-span-5">
+        <div className="order-2 flex flex-col justify-between p-4 sm:order-1 sm:p-6 md:p-7"><div><p className="eyebrow text-primary">02 · Эстетика</p><h3 className="mt-2 text-lg font-bold leading-tight tracking-tight sm:mt-3 sm:text-2xl">{orthopedics.title}</h3></div><div className="mt-4 flex items-end justify-between gap-4 sm:mt-6"><p className="hidden text-sm leading-6 text-on-surface-variant sm:block">Цифровое планирование формы и функции.</p><ServiceArrow /></div></div>
+        <MediaFrame media={toMedia(orthopedics)} className="order-1 min-h-full rounded-none sm:order-2 [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.035]" />
       </Link>
 
-      <Link to={`/services/${microscope.id}`} className="group grid min-h-[300px] overflow-hidden rounded-[28px] bg-primary text-white shadow-sm sm:grid-cols-[1.08fr_.92fr] lg:col-span-5">
-        <MediaFrame media={toMedia(microscope)} className="min-h-60 rounded-none sm:min-h-full [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.035]" />
-        <div className="flex flex-col justify-between p-6 md:p-7"><div><p className="eyebrow text-primary-fixed">Нужно вылечить зуб</p><h3 className="mt-3 text-2xl font-bold leading-tight tracking-tight">{microscope.title}</h3></div><div className="mt-6 flex items-end justify-between gap-4"><p className="text-sm leading-6 text-white/70">{microscope.description}</p><ServiceArrow light /></div></div>
+      <Link to={`/services/${microscope.id}`} className="group grid min-h-[180px] grid-cols-[108px_1fr] overflow-hidden rounded-[24px] bg-primary text-white shadow-sm sm:min-h-[300px] sm:grid-cols-[1.08fr_.92fr] sm:rounded-[28px] lg:col-span-5">
+        <MediaFrame media={toMedia(microscope)} className="min-h-full rounded-none [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.035]" />
+        <div className="flex flex-col justify-between p-4 sm:p-6 md:p-7"><div><p className="eyebrow text-primary-fixed">Лечение зуба</p><h3 className="mt-2 text-lg font-bold leading-tight tracking-tight sm:mt-3 sm:text-2xl">{microscope.title}</h3></div><div className="mt-4 flex items-end justify-between gap-4 sm:mt-6"><p className="hidden text-sm leading-6 text-white/70 sm:block">{microscope.description}</p><ServiceArrow light /></div></div>
       </Link>
 
-      <Link to={`/services/${orthodontics.id}`} className="group grid min-h-[350px] overflow-hidden rounded-[32px] border border-outline-variant/50 bg-[#e4f1f0] shadow-sm md:grid-cols-[1.15fr_.85fr] lg:col-span-12">
-        <MediaFrame media={toMedia(orthodontics)} className="min-h-72 rounded-none md:min-h-full [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.025]" />
-        <div className="flex flex-col justify-center p-7 md:p-10"><p className="eyebrow text-primary">Хочу исправить прикус</p><h3 className="mt-3 text-3xl font-bold leading-tight tracking-tight md:text-4xl">{orthodontics.title}</h3><p className="mt-4 text-base leading-7 text-on-surface-variant">{orthodontics.description}</p><div className="mt-7 flex items-center justify-between gap-4"><span className="text-sm font-semibold text-primary">Элайнеры и брекет-системы</span><ServiceArrow /></div></div>
+      <Link to={`/services/${orthodontics.id}`} className="group grid min-h-[190px] grid-cols-[112px_1fr] overflow-hidden rounded-[24px] border border-outline-variant/50 bg-[#e4f1f0] shadow-sm md:min-h-[350px] md:grid-cols-[1.15fr_.85fr] md:rounded-[32px] lg:col-span-12">
+        <MediaFrame media={toMedia(orthodontics)} className="min-h-full rounded-none [&_img]:transition-transform [&_img]:duration-500 group-hover:[&_img]:scale-[1.025]" />
+        <div className="flex flex-col justify-center p-4 sm:p-6 md:p-10"><p className="eyebrow text-primary">Исправление прикуса</p><h3 className="mt-2 text-lg font-bold leading-tight tracking-tight sm:text-2xl md:mt-3 md:text-4xl">{orthodontics.title}</h3><p className="mt-4 hidden text-base leading-7 text-on-surface-variant sm:block">{orthodontics.description}</p><div className="mt-4 flex items-center justify-between gap-4 md:mt-7"><span className="hidden text-sm font-semibold text-primary sm:block">Элайнеры и брекет-системы</span><ServiceArrow /></div></div>
       </Link>
     </div>
   );
@@ -178,12 +178,12 @@ export function EditorialServiceGrid() {
 
 export function PatientProblemGrid() {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
       {PATIENT_PROBLEMS.map((problem, index) => (
-        <Link key={problem.serviceId} to={`/services/${problem.serviceId}`} className={`group flex min-h-40 flex-col justify-between rounded-[22px] border p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${index === 0 ? 'border-primary bg-primary text-white' : 'border-outline-variant/55 bg-white'}`}>
+        <Link key={problem.serviceId} to={`/services/${problem.serviceId}`} className={`group flex min-h-32 flex-col justify-between rounded-[20px] border p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg sm:min-h-40 sm:rounded-[22px] sm:p-5 ${index === 0 ? 'border-primary bg-primary text-white' : 'border-outline-variant/55 bg-white'}`}>
           <span className={`text-xs font-bold tracking-[.16em] ${index === 0 ? 'text-primary-fixed' : 'text-primary'}`}>0{index + 1}</span>
-          <div className="mt-8"><h3 className="text-lg font-bold leading-6">{problem.label}</h3><p className={`mt-2 text-xs leading-5 ${index === 0 ? 'text-white/70' : 'text-on-surface-variant'}`}>{problem.description}</p></div>
-          <ArrowRight className={`mt-4 size-4 transition-transform group-hover:translate-x-1 ${index === 0 ? 'text-primary-fixed' : 'text-primary'}`} aria-hidden="true" />
+          <div className="mt-5 sm:mt-8"><h3 className="text-[15px] font-bold leading-5 sm:text-lg sm:leading-6">{problem.label}</h3><p className={`mt-2 hidden text-xs leading-5 sm:block ${index === 0 ? 'text-white/70' : 'text-on-surface-variant'}`}>{problem.description}</p></div>
+          <ArrowRight className={`mt-3 size-4 transition-transform group-hover:translate-x-1 sm:mt-4 ${index === 0 ? 'text-primary-fixed' : 'text-primary'}`} aria-hidden="true" />
         </Link>
       ))}
     </div>

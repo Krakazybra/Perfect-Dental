@@ -70,5 +70,24 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .faq-item p { max-width: 760px; padding: 0 2rem 1.25rem 0; color: #465152; font-size: .925rem; line-height: 1.7; }
 
 @media (min-width: 768px) { .section-shell { width: min(100% - 3rem, 1280px); } }
-@media (max-width: 767px) { .section-title { letter-spacing: -.035em; } .service-card-media { aspect-ratio: 16 / 8; } }
+@media (max-width: 767px) {
+  .section-title { letter-spacing: -.035em; }
+  .service-card-media { aspect-ratio: 16 / 8; }
+  .home-page .section-pad { padding-block: 3rem; }
+  .home-page .section-heading { gap: .75rem; }
+  .home-page .section-heading > div > p.mt-4 { margin-top: .75rem; font-size: .925rem; line-height: 1.55rem; }
+  .home-clinic-features > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .home-clinic-features article { padding: 1rem; border-radius: 1.15rem; }
+  .home-clinic-features article span { width: 2.25rem; height: 2.25rem; border-radius: .75rem; }
+  .home-clinic-features article h3 { margin-top: .75rem; font-size: .9rem; line-height: 1.25rem; }
+  .home-clinic-features article p { display: none; }
+  .home-process ol { gap: .7rem; }
+  .home-process li { display: grid; min-height: 0; grid-template-columns: 2rem 1fr; align-items: center; padding: 1rem; border-radius: 1.1rem; }
+  .home-process li p { margin-top: 0; font-size: .925rem; line-height: 1.3rem; }
+  .home-process li > span:last-child { display: none; }
+  .home-cta > section { padding: 2rem 1.25rem 6rem; }
+  .home-cta .cta-panel { border-radius: 1.5rem; padding: 1.25rem; }
+  .home-cta .cta-panel h2 { font-size: 1.65rem; line-height: 2rem; }
+  .home-cta .cta-panel > div { gap: 1.25rem; }
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
