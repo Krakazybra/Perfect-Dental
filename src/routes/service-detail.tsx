@@ -2,13 +2,14 @@ import type { MetaFunction } from 'react-router';
 import { Link, useParams } from 'react-router';
 import { ArrowLeft, ArrowRight, CircleDot, ScanLine, Sparkles } from 'lucide-react';
 import { AppointmentCta, BenefitsList, PageHero, ProcessSteps, SectionHeading } from '../components/SiteSections';
-import { SERVICES, getService } from '../data/clinicData';
+import { StructuredData } from '../components/StructuredData';
+import { SERVICES, SITE_URL, getService } from '../data/clinicData';
 import { createMeta } from '../lib/seo';
 
 export const meta: MetaFunction = ({ params }) => {
   const service = getService(params.serviceId);
   if (!service) return createMeta('Услуга не найдена — Perfect Dental', 'Запрошенная услуга не найдена.', '/services');
-  return createMeta(`${service.title} в Астане — Perfect Dental`, service.intro, `/services/${service.id}`, service.image);
+  return createMeta(`${service.title} в Астане — Perfect Dental`, service.description, `/services/${service.id}`, service.image, 1440, 1080);
 };
 
 export default function ServiceDetailRoute() {
@@ -17,7 +18,33 @@ export default function ServiceDetailRoute() {
   if (!service) return <section className="section-shell section-pad"><h1 className="text-4xl font-bold">Услуга не найдена</h1><Link to="/services" className="mt-6 inline-flex items-center gap-2 text-primary"><ArrowLeft className="size-4" aria-hidden="true" />Вернуться к услугам</Link></section>;
 
   const related = SERVICES.filter((item) => item.id !== service.id).slice(0, 3);
+  const serviceUrl = `${SITE_URL}/services/${service.id}`;
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${serviceUrl}#service`,
+        name: service.title,
+        description: service.description,
+        url: serviceUrl,
+        image: `${SITE_URL}${service.image}`,
+        areaServed: { '@type': 'City', name: 'Астана' },
+        provider: { '@id': `${SITE_URL}/#clinic` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${serviceUrl}#breadcrumbs`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Главная', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Услуги', item: `${SITE_URL}/services` },
+          { '@type': 'ListItem', position: 3, name: service.title, item: serviceUrl },
+        ],
+      },
+    ],
+  };
   return <>
+    <StructuredData data={structuredData} />
     <PageHero
       variant="split-media"
       eyebrow={service.eyebrow}

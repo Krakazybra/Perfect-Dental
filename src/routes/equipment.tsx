@@ -4,7 +4,7 @@ import { AppointmentCta, BenefitsList, FeatureGrid, MediaFrame, PageHero, Sectio
 import { EQUIPMENT } from '../data/clinicData';
 import { createMeta } from '../lib/seo';
 
-export const meta: MetaFunction = () => createMeta('Оборудование стоматологии Perfect Dental в Астане', 'Doctor Smile Pluser, цифровая 3D-диагностика, внутриротовое сканирование и лечение под микроскопом.', '/equipment', '/images/equipment/doctor-smile-pluser-v2.webp');
+export const meta: MetaFunction = () => createMeta('Оборудование стоматологии Perfect Dental в Астане', 'Doctor Smile Pluser, цифровая 3D-диагностика, внутриротовое сканирование и лечение под микроскопом.', '/equipment', '/images/equipment/doctor-smile-pluser-v2.webp', 1440, 1080);
 
 export default function EquipmentRoute() {
   return <>

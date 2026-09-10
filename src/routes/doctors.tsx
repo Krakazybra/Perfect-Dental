@@ -10,6 +10,8 @@ export const meta: MetaFunction = () => createMeta(
   'Реальная команда Perfect Dental. Фотографии врачей и направления стоматологической помощи клиники в Астане.',
   '/doctors',
   '/images/team/founder-portrait.webp',
+  1200,
+  1800,
 );
 
 const HERO_MEDIA = {

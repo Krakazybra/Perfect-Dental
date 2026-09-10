@@ -1,8 +1,15 @@
 import type { MetaDescriptor } from 'react-router';
 import { SITE_URL } from '../data/clinicData';
 
-export function createMeta(title: string, description: string, path = '', imagePath = '/images/brand/og-perfect-dental.png'): MetaDescriptor[] {
-  const canonical = `${SITE_URL}${path}`;
+export function createMeta(
+  title: string,
+  description: string,
+  path = '',
+  imagePath = '/images/brand/og-perfect-dental.png',
+  imageWidth = 1200,
+  imageHeight = 630,
+): MetaDescriptor[] {
+  const canonical = `${SITE_URL}${path || '/'}`;
   const image = imagePath.startsWith('http') ? imagePath : `${SITE_URL}${imagePath}`;
 
   return [
@@ -17,9 +24,12 @@ export function createMeta(title: string, description: string, path = '', imageP
     { property: 'og:description', content: description },
     { property: 'og:url', content: canonical },
     { property: 'og:image', content: image },
-    { property: 'og:image:width', content: '1200' },
-    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: title },
+    { property: 'og:image:width', content: String(imageWidth) },
+    { property: 'og:image:height', content: String(imageHeight) },
     { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
     { name: 'twitter:image', content: image },
   ];
 }

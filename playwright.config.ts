@@ -25,6 +25,7 @@ export default defineConfig({
     { name: 'chromium', testMatch: /smoke\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
     { name: 'mobile', testMatch: /mobile\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
     { name: 'a11y', testMatch: /a11y\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
+    { name: 'seo', testMatch: /seo\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
     { name: 'visual', testMatch: /visual\.spec\.ts/, use: { ...devices['Desktop Chrome'], reducedMotion: 'reduce' } },
   ],
 });
