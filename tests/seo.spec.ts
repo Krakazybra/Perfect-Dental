@@ -76,6 +76,7 @@ test('robots, sitemap and 404 expose correct crawler signals', async ({ page, re
     const canonical = route === '/' ? `${siteUrl}/` : `${siteUrl}${route}`;
     expect(sitemapXml, route).toContain(`<loc>${canonical}</loc>`);
   }
+  expect(sitemapXml.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g)).toHaveLength(routes.length);
 
   const notFound = await page.goto('/seo-check-missing-page');
   expect(notFound?.status()).toBe(404);
