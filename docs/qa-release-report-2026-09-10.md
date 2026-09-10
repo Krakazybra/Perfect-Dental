@@ -6,7 +6,7 @@ Production URL: https://perfect-dental-six.vercel.app
 
 Vercel project: `perfect-dental`
 
-Deployment: `dpl_5dTgH2CrSiNBhWCoj2U5JtoPx1NE`, повышен до production.
+Deployment: `dpl_6kmUKGWFapv1iB9Sh772ZMkvZZP5`, production.
 
 Статус Vercel: `READY`, target `production`.
 
