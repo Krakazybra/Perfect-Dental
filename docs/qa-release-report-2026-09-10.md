@@ -6,7 +6,7 @@ Production URL: https://perfect-dental-six.vercel.app
 
 Vercel project: `perfect-dental`
 
-Deployment: `dpl_6kmUKGWFapv1iB9Sh772ZMkvZZP5`, production.
+Deployment: `dpl_GyMyH2BUVtdyZMBToykVeCdsYvHM`, production.
 
 Статус Vercel: `READY`, target `production`.
 
@@ -27,6 +27,11 @@ Deployment: `dpl_6kmUKGWFapv1iB9Sh772ZMkvZZP5`, production.
 - Accessibility: 17 из 17
 - Visual regression: 70 из 70
   - ширины 360, 390, 768, 1024 и 1440 px
+- SEO suite: 3 из 3 локально и 3 из 3 на production
+  - уникальные title, description и canonical на 17 индексируемых страницах
+  - один H1 и полные Open Graph-данные на каждой странице
+  - JSON-LD клиники, сайта, услуг и хлебных крошек
+  - robots.txt, sitemap.xml и HTTP 404 с noindex
 
 ## Проверено вручную
 
