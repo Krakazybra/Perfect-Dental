@@ -3,6 +3,7 @@ import { CheckCircle2, CircleAlert, MessageCircle, Phone, Send, X } from 'lucide
 import type { AppointmentResponse } from '../types';
 import type { AppointmentSelection } from '../context/AppointmentContext';
 import { CLINIC_INFO, DOCTORS, SERVICES } from '../data/clinicData';
+import { formatPhone, validateAppointment, type AppointmentFieldErrors } from '../lib/appointment';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 const EMPTY_FORM = { name: '', phone: '', service: '', doctor: '', comment: '', consent: false, website: '' };
@@ -18,12 +19,14 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
   const dialog = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<AppointmentFieldErrors>({});
   const [form, setForm] = useState(EMPTY_FORM);
 
   const closeModal = useCallback(() => {
     setForm(EMPTY_FORM);
     setStatus('idle');
     setErrorMessage('');
+    setFieldErrors({});
     onClose();
   }, [onClose]);
 
@@ -31,6 +34,7 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
     if (!selection) return;
     setStatus('idle');
     setErrorMessage('');
+    setFieldErrors({});
     setForm((current) => ({ ...current, service: selection.service ?? '', doctor: selection.doctor ?? '' }));
     requestAnimationFrame(() => closeButton.current?.focus());
   }, [selection]);
@@ -67,8 +71,10 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!form.name.trim() || !form.phone.trim() || !form.consent) {
-      setErrorMessage('Заполните имя, телефон и подтвердите согласие на обработку данных.');
+    const errors = validateAppointment(form);
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      setErrorMessage('Проверьте обязательные поля.');
       setStatus('error');
       return;
     }
@@ -107,14 +113,14 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 px-6 py-6 md:px-8" noValidate>
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className="text-sm font-semibold">Имя *<input required maxLength={80} autoComplete="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="form-field mt-1.5" placeholder="Как к вам обращаться" /></label>
-              <label className="text-sm font-semibold">Телефон *<input required maxLength={30} autoComplete="tel" inputMode="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="form-field mt-1.5" placeholder="+7 777 000 00 00" /></label>
+              <label className="text-sm font-semibold">Имя *<input required maxLength={80} autoComplete="name" value={form.name} onChange={(e) => { setForm({ ...form, name: e.target.value }); setFieldErrors((current) => ({ ...current, name: undefined })); }} aria-invalid={Boolean(fieldErrors.name)} aria-describedby={fieldErrors.name ? 'appointment-name-error' : undefined} className="form-field mt-1.5" placeholder="Как к вам обращаться" />{fieldErrors.name ? <span id="appointment-name-error" className="mt-1.5 block text-xs font-medium text-red-700">{fieldErrors.name}</span> : null}</label>
+              <label className="text-sm font-semibold">Телефон *<input required maxLength={30} autoComplete="tel" inputMode="tel" value={form.phone} onChange={(e) => { setForm({ ...form, phone: formatPhone(e.target.value) }); setFieldErrors((current) => ({ ...current, phone: undefined })); }} aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'appointment-phone-error' : undefined} className="form-field mt-1.5" placeholder="+7 777 000 00 00" />{fieldErrors.phone ? <span id="appointment-phone-error" className="mt-1.5 block text-xs font-medium text-red-700">{fieldErrors.phone}</span> : null}</label>
             </div>
             <label className="block text-sm font-semibold">Услуга<select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className="form-field mt-1.5"><option value="">Первичная консультация</option>{SERVICES.map((service) => <option key={service.id} value={service.title}>{service.title}</option>)}</select></label>
             <label className="block text-sm font-semibold">Направление специалиста<select value={form.doctor} onChange={(e) => setForm({ ...form, doctor: e.target.value })} className="form-field mt-1.5"><option value="">Подберёт администратор</option>{DOCTORS.map((doctor) => <option key={doctor.id} value={doctor.specialty}>{doctor.specialty}</option>)}</select></label>
             <label className="block text-sm font-semibold">Комментарий<textarea maxLength={500} rows={3} value={form.comment} onChange={(e) => setForm({ ...form, comment: e.target.value })} className="form-field mt-1.5 resize-none" placeholder="Кратко опишите вопрос" /></label>
             <label className="sr-only" aria-hidden="true">Не заполняйте это поле<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} /></label>
-            <label className="flex items-start gap-3 text-xs leading-5 text-on-surface-variant"><input required type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} className="mt-1 size-4 accent-primary" /><span>Я согласен(на) на обработку персональных данных согласно <a href="/privacy" target="_blank" className="underline">политике конфиденциальности</a>.</span></label>
+            <div><label className="flex items-start gap-3 text-xs leading-5 text-on-surface-variant"><input required type="checkbox" checked={form.consent} onChange={(e) => { setForm({ ...form, consent: e.target.checked }); setFieldErrors((current) => ({ ...current, consent: undefined })); }} aria-invalid={Boolean(fieldErrors.consent)} aria-describedby={fieldErrors.consent ? 'appointment-consent-error' : undefined} className="mt-1 size-4 accent-primary" /><span>Я согласен(на) на обработку персональных данных согласно <a href="/privacy" target="_blank" className="underline">политике конфиденциальности</a>.</span></label>{fieldErrors.consent ? <span id="appointment-consent-error" className="ml-7 mt-1.5 block text-xs font-medium text-red-700">{fieldErrors.consent}</span> : null}</div>
             {status === 'error' && <div role="alert" className="flex gap-3 rounded-xl bg-red-50 p-3 text-sm text-red-800"><CircleAlert className="size-5 shrink-0" />{errorMessage}</div>}
             <button disabled={status === 'sending'} type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-white disabled:cursor-wait disabled:opacity-60"><Send className="size-4" />{status === 'sending' ? 'Отправляем…' : 'Отправить заявку'}</button>
             {status === 'error' && <div className="grid gap-2 sm:grid-cols-2"><a href={`tel:${CLINIC_INFO.phoneHref}`} className="flex items-center justify-center gap-2 rounded-xl border border-outline-variant px-4 py-3 text-sm font-semibold"><Phone className="size-4" />Позвонить</a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"><MessageCircle className="size-4" />WhatsApp</a></div>}

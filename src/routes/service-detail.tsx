@@ -1,20 +1,74 @@
 import type { MetaFunction } from 'react-router';
 import { Link, useParams } from 'react-router';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { AppointmentCta, BenefitsList, PageHero } from '../components/SiteSections';
-import { getService, SERVICES } from '../data/clinicData';
+import { ArrowLeft, ArrowRight, CircleDot, ScanLine, Sparkles } from 'lucide-react';
+import { AppointmentCta, BenefitsList, PageHero, ProcessSteps, SectionHeading } from '../components/SiteSections';
+import { SERVICES, getService } from '../data/clinicData';
 import { createMeta } from '../lib/seo';
 
 export const meta: MetaFunction = ({ params }) => {
   const service = getService(params.serviceId);
-  return service ? createMeta(`${service.title} в Астане — Perfect Dental`, service.description, `/services/${service.id}`) : createMeta('Услуга не найдена — Perfect Dental', 'Запрошенная услуга не найдена.', '/services');
+  if (!service) return createMeta('Услуга не найдена — Perfect Dental', 'Запрошенная услуга не найдена.', '/services');
+  return createMeta(`${service.title} в Астане — Perfect Dental`, service.intro, `/services/${service.id}`, service.image);
 };
 
 export default function ServiceDetailRoute() {
   const { serviceId } = useParams();
   const service = getService(serviceId);
-  if (!service) return <main className="section-shell py-24"><h1 className="text-4xl font-bold">Услуга не найдена</h1><Link to="/services" className="mt-6 inline-flex items-center gap-2 text-primary"><ArrowLeft className="size-4" />Вернуться к услугам</Link></main>;
-  const Icon = service.icon;
-  const related = SERVICES.filter((item) => item.id !== service.id);
-  return <><PageHero eyebrow={service.eyebrow} title={service.title} description={service.intro}><div className="rounded-3xl border border-white/15 bg-white/10 p-7"><Icon className="size-10 text-primary-fixed" /><p className="mt-5 text-sm leading-6 text-white/75">Стоимость определяется после консультации и диагностики. План лечения составляется индивидуально.</p></div></PageHero><section className="section-shell grid gap-12 py-16 md:py-24 lg:grid-cols-[1fr_.8fr]"><div><p className="eyebrow text-primary">Что входит в направление</p><h2 className="section-title mt-3">Возможности лечения</h2><div className="mt-7"><BenefitsList items={service.highlights} /></div></div><aside className="rounded-3xl bg-surface-container-low p-7"><h2 className="text-xl font-bold">Как начинается лечение</h2><ol className="mt-5 space-y-4 text-sm leading-6 text-on-surface-variant"><li><strong className="text-primary">01.</strong> Консультация и сбор информации</li><li><strong className="text-primary">02.</strong> Диагностика по показаниям</li><li><strong className="text-primary">03.</strong> Обсуждение плана и стоимости</li><li><strong className="text-primary">04.</strong> Лечение и контроль результата</li></ol></aside></section><section className="bg-surface-container-low py-16"><div className="section-shell"><h2 className="text-2xl font-bold">Другие направления</h2><div className="mt-6 grid gap-3 md:grid-cols-3">{related.map((item) => <Link key={item.id} to={`/services/${item.id}`} className="group flex items-center justify-between rounded-2xl bg-white p-5 text-sm font-semibold shadow-sm">{item.shortTitle}<ArrowRight className="size-4 text-primary transition group-hover:translate-x-1" /></Link>)}</div></div></section><AppointmentCta service={service.title} title={`Записаться: ${service.shortTitle}`} /></>;
+  if (!service) return <section className="section-shell section-pad"><h1 className="text-4xl font-bold">Услуга не найдена</h1><Link to="/services" className="mt-6 inline-flex items-center gap-2 text-primary"><ArrowLeft className="size-4" aria-hidden="true" />Вернуться к услугам</Link></section>;
+
+  const related = SERVICES.filter((item) => item.id !== service.id).slice(0, 3);
+  return <>
+    <PageHero
+      variant="split-media"
+      eyebrow={service.eyebrow}
+      title={service.title}
+      description={service.intro}
+      media={{ src: service.image, avif: service.imageAvif, alt: service.imageAlt, width: 830, height: 609, position: service.imagePosition, source: service.imageSource ?? 'client', credit: service.imageCredit }}
+    />
+
+    <section className="section-shell section-pad grid gap-12 lg:grid-cols-[1fr_.84fr] lg:gap-16">
+      <div>
+        <SectionHeading eyebrow="Когда нужна консультация" title="С какими задачами обращаются" description="Этот список помогает сориентироваться, но не заменяет осмотр и диагностику врача." />
+        <div className="mt-7"><BenefitsList items={service.problems} /></div>
+      </div>
+      <aside className="rounded-[28px] bg-primary p-7 text-white md:p-9">
+        <Sparkles className="size-8 text-primary-fixed" aria-hidden="true" />
+        <p className="eyebrow mt-6 text-primary-fixed">Что важно знать</p>
+        <h2 className="mt-3 text-2xl font-bold">План формируется индивидуально</h2>
+        <p className="mt-4 text-sm leading-6 text-white/72">Стоимость и последовательность лечения определяются после консультации и необходимых исследований. До начала процедур врач объясняет предложенный план.</p>
+      </aside>
+    </section>
+
+    <section className="section-soft">
+      <div className="section-shell section-pad grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <SectionHeading eyebrow="Что входит в направление" title="Возможности лечения" />
+          <div className="mt-7"><BenefitsList items={service.highlights} /></div>
+        </div>
+        <div className="surface-card p-7 md:p-9">
+          <ScanLine className="size-8 text-primary" aria-hidden="true" />
+          <h2 className="mt-5 text-2xl font-bold">Технологии и планирование</h2>
+          <ul className="mt-6 space-y-4">{service.technologies.map((item) => <li key={item} className="flex items-center gap-3 text-sm font-semibold"><CircleDot className="size-4 shrink-0 text-primary" aria-hidden="true" />{item}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section className="section-shell section-pad">
+      <SectionHeading eyebrow="Последовательность" title="Как начинается лечение" description="Конкретные этапы могут отличаться в зависимости от клинической ситуации." />
+      <div className="mt-10"><ProcessSteps items={service.steps} /></div>
+    </section>
+
+    <section className="section-soft">
+      <div className="section-shell section-pad grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+        <SectionHeading eyebrow="Вопросы пациентов" title="Коротко о главном" description="Окончательные рекомендации врач даст после консультации." />
+        <div>{service.faq.map((item) => <details key={item.question} className="faq-item"><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+      </div>
+    </section>
+
+    <section className="section-shell section-pad">
+      <h2 className="text-2xl font-bold">Другие направления</h2>
+      <div className="mt-6 grid gap-3 md:grid-cols-3">{related.map((item) => <Link key={item.id} to={`/services/${item.id}`} className="group flex items-center justify-between rounded-2xl border border-outline-variant/50 bg-white p-5 text-sm font-semibold transition hover:border-primary/40 hover:shadow-md">{item.shortTitle}<ArrowRight className="size-4 text-primary transition-transform group-hover:translate-x-1" aria-hidden="true" /></Link>)}</div>
+    </section>
+    <AppointmentCta service={service.title} title={`Записаться: ${service.shortTitle}`} />
+  </>;
 }

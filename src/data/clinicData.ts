@@ -1,5 +1,5 @@
-import { Activity, Braces, Microscope, ScanLine } from 'lucide-react';
-import type { DoctorPlaceholder, EquipmentItem, ReviewItem, ServiceItem } from '../types';
+import { Activity, Bone, Braces, HeartPulse, Microscope, ScanLine, ShieldPlus, Siren, Smile } from 'lucide-react';
+import type { DoctorPlaceholder, DoctorPreview, EquipmentItem, IllustrativeCase, InstagramPost, ReviewItem, ServiceItem } from '../types';
 
 export const SITE_URL = 'https://perfectdental.kz';
 export const TWO_GIS_URL = 'https://2gis.kz/astana/firm/70000001052500164';
@@ -26,55 +26,104 @@ export const CLINIC_INFO = {
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'laser-surgery',
-    shortTitle: 'Лазерная хирургия',
-    title: 'Хирургия, имплантация и костная пластика',
-    eyebrow: 'Хирургия любой сложности',
-    description:
-      'Планируем хирургическое лечение индивидуально и применяем стоматологический лазер там, где это показано врачом.',
-    intro:
-      'Хирургическое направление Perfect Dental объединяет диагностику, имплантацию, костную пластику и современные лазерные протоколы. Объём лечения определяется после консультации и снимков.',
-    highlights: [
-      'Дентальная имплантация',
-      'Костная пластика',
-      'Удаление зубов различной сложности',
-      'Применение лазера Doctor Smile Pluser по показаниям',
+    id: 'microscope-treatment',
+    shortTitle: 'Лечение зубов',
+    title: 'Лечение зубов под микроскопом',
+    eyebrow: 'Сохранение зуба',
+    description: 'Лечим кариес и корневые каналы с увеличением, чтобы врач лучше видел рабочую область.',
+    intro: 'При боли, чувствительности или проблеме со старой пломбой начинаем с осмотра и снимка по показаниям. После диагностики врач объясняет, можно ли сохранить зуб и как будет проходить лечение.',
+    image: '/images/services/therapy-editorial.webp',
+    imageAvif: '/images/services/therapy-editorial.avif',
+    imageAlt: 'Стоматологический микроскоп для лечения зубов',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: [
+      'Зуб болит или реагирует на холодное и горячее',
+      'Появилось тёмное пятно или выпала пломба',
+      'Нужно лечить или повторно лечить корневые каналы',
+      'Нужно понять, можно ли сохранить зуб',
+    ],
+    highlights: ['Лечение кариеса', 'Лечение корневых каналов', 'Повторное эндодонтическое лечение', 'Реставрация зубов'],
+    technologies: ['Стоматологический микроскоп', 'Прицельные снимки по показаниям', 'Контроль этапов лечения'],
+    steps: ['Осмотр и диагностика', 'Обсуждение прогноза', 'Лечение под увеличением', 'Контроль результата'],
+    faq: [
+      { question: 'Зачем нужен микроскоп?', answer: 'Увеличение помогает врачу лучше видеть рабочую область и контролировать важные этапы лечения.' },
+      { question: 'Можно ли заранее назвать стоимость?', answer: 'Стоимость зависит от состояния зуба и объёма лечения. Врач назовёт её после диагностики.' },
+    ],
+    icon: Microscope,
+  },
+  {
+    id: 'implantation',
+    shortTitle: 'Имплантация',
+    title: 'Имплантация зубов',
+    eyebrow: 'Восстановление отсутствующих зубов',
+    description: 'Планируем установку импланта по данным диагностики и заранее объясняем последовательность этапов.',
+    intro: 'Имплантация начинается с консультации хирурга и оценки снимков. Врач обсуждает варианты восстановления, необходимость подготовки и сроки каждого этапа.',
+    image: '/images/services/surgery-editorial.webp',
+    imageAvif: '/images/services/surgery-editorial.avif',
+    imageAlt: 'Имплант и модель зуба для планирования имплантации',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: ['Нет одного зуба', 'Отсутствует несколько зубов', 'Нужно заменить съёмную конструкцию', 'Нужна консультация по восстановлению зубного ряда'],
+    highlights: ['Установка имплантов', 'Имплантация после удаления по показаниям', 'Протезирование на имплантах', 'Костная пластика по показаниям'],
+    technologies: ['КТ и цифровое планирование', 'Внутриротовое сканирование', 'Индивидуальный хирургический план'],
+    steps: ['Консультация и КТ', 'План и подготовка', 'Установка импланта', 'Протезирование и контроль'],
+    faq: [
+      { question: 'Нужна ли КТ перед имплантацией?', answer: 'Объём диагностики определяет врач. Для планирования имплантации обычно нужны данные о состоянии кости и соседних структур.' },
+      { question: 'Сколько этапов потребуется?', answer: 'Это зависит от клинической ситуации. Последовательность врач объяснит после осмотра и снимков.' },
+    ],
+    icon: Bone,
+  },
+  {
+    id: 'surgery',
+    shortTitle: 'Хирургия',
+    title: 'Хирургическая стоматология',
+    eyebrow: 'Удаление и хирургическое лечение',
+    description: 'Проводим удаление зубов и другие хирургические процедуры после осмотра и диагностики.',
+    intro: 'Хирург оценивает состояние зуба и окружающих тканей, объясняет возможные варианты и только после этого составляет план процедуры.',
+    image: '/images/services/surgery-neutral.webp',
+    imageAvif: '/images/services/surgery-neutral.avif',
+    imageAlt: 'Стерильные стоматологические инструменты для хирургического лечения',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: ['Нужно удалить зуб', 'Беспокоит зуб мудрости', 'Нужна подготовка к имплантации', 'Требуется консультация хирурга'],
+    highlights: ['Удаление зубов', 'Удаление зубов мудрости', 'Костная пластика', 'Лазерные протоколы по показаниям'],
+    technologies: ['КТ по показаниям', 'Doctor Smile Pluser', 'Контрольные осмотры'],
+    steps: ['Консультация хирурга', 'Диагностика', 'Согласование процедуры', 'Лечение и рекомендации'],
+    faq: [
+      { question: 'Всегда ли зуб нужно удалять?', answer: 'Нет. Решение принимается после оценки возможности сохранить зуб.' },
+      { question: 'Всегда ли используется лазер?', answer: 'Нет. Врач применяет лазер только тогда, когда это подходит для конкретной процедуры.' },
     ],
     icon: Activity,
   },
   {
     id: 'orthopedics',
     shortTitle: 'Ортопедия',
-    title: 'Коронки и виниры',
-    eyebrow: 'Функция и эстетика',
-    description:
-      'Восстанавливаем форму, функцию и эстетику зубов с цифровым планированием будущей улыбки.',
-    intro:
-      'Ортопедическое лечение начинается с диагностики и обсуждения ожидаемого результата. Врач подбирает конструкцию и материал с учётом прикуса, состояния зубов и эстетических задач.',
+    title: 'Коронки, виниры и протезирование',
+    eyebrow: 'Восстановление зубов',
+    description: 'Восстанавливаем форму и функцию зубов с помощью коронок, виниров и других ортопедических конструкций.',
+    intro: 'Ортопед оценивает состояние зубов и прикус, обсуждает желаемый результат и подбирает подходящую конструкцию и материал.',
+    image: '/images/services/orthopedics-editorial.webp',
+    imageAvif: '/images/services/orthopedics-editorial.avif',
+    imageAlt: 'Керамические коронки, виниры и шкала оттенков',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: [
+      'Зуб сильно разрушен', 'Нужно восстановить отсутствующий зуб', 'Не устраивает форма или цвет зубов', 'Нужно заменить старую коронку',
+    ],
     highlights: [
       'Керамические виниры',
       'Одиночные коронки',
       'Протезирование на имплантах',
       'Цифровое сканирование вместо традиционных слепков',
     ],
-    icon: ScanLine,
-  },
-  {
-    id: 'therapy',
-    shortTitle: 'Терапия',
-    title: 'Лечение кариеса и эндодонтия под микроскопом',
-    eyebrow: 'Точность в деталях',
-    description:
-      'Стремимся сохранить собственный зуб и контролировать важные этапы лечения с увеличением.',
-    intro:
-      'Микроскоп помогает врачу лучше видеть рабочую область при лечении кариеса и корневых каналов. План и прогноз лечения обсуждаются после диагностики.',
-    highlights: [
-      'Лечение кариеса различной сложности',
-      'Первичное лечение корневых каналов',
-      'Повторное эндодонтическое лечение',
-      'Реставрация зубов',
+    technologies: ['Внутриротовое сканирование', 'Цифровая модель зубов', 'Планирование формы и функции'],
+    steps: ['Осмотр и диагностика', 'Цифровое сканирование', 'Выбор конструкции и материала', 'Примерка, фиксация и контроль'],
+    faq: [
+      { question: 'Чем коронка отличается от винира?', answer: 'Это разные виды конструкций и показания к ним. Врач предложит вариант после оценки состояния зубов и прикуса.' },
+      { question: 'Можно ли увидеть будущий результат заранее?', answer: 'Возможности предварительного цифрового планирования зависят от выбранного клинического протокола и обсуждаются на консультации.' },
     ],
-    icon: Microscope,
+    icon: Smile,
   },
   {
     id: 'orthodontics',
@@ -85,13 +134,118 @@ export const SERVICES: ServiceItem[] = [
       'Подбираем подходящий способ коррекции прикуса после диагностики и составления индивидуального плана.',
     intro:
       'В ортодонтическом направлении доступны прозрачные элайнеры и брекет-системы американского производства. Конкретная система выбирается врачом вместе с пациентом.',
+    image: '/images/services/orthodontics-editorial.webp',
+    imageAvif: '/images/services/orthodontics-editorial.avif',
+    imageAlt: 'Прозрачные элайнеры и ортодонтические брекеты',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: [
+      'Неровное положение зубов',
+      'Промежутки или скученность',
+      'Вопросы, связанные с прикусом',
+      'Выбор между элайнерами и брекет-системой',
+    ],
     highlights: [
       'Диагностика прикуса',
       'Лечение на элайнерах',
       'Брекет-системы американского производства',
       'Наблюдение и коррекции по плану лечения',
     ],
+    technologies: ['Цифровое сканирование', 'Планирование перемещения зубов', 'Элайнеры и брекет-системы'],
+    steps: ['Консультация ортодонта', 'Диагностика и сканирование', 'Выбор системы и планирование', 'Установка или выдача системы и наблюдение'],
+    faq: [
+      { question: 'Что выбрать: элайнеры или брекеты?', answer: 'Выбор зависит от клинической задачи, образа жизни и рекомендаций ортодонта после диагностики.' },
+      { question: 'Сколько длится лечение?', answer: 'Срок индивидуален и зависит от исходной ситуации и выбранной системы. Ориентир врач сможет дать после планирования.' },
+    ],
     icon: Braces,
+  },
+  {
+    id: 'periodontology',
+    shortTitle: 'Лечение дёсен',
+    title: 'Лечение дёсен',
+    eyebrow: 'Пародонтология',
+    description: 'Помогаем разобраться с кровоточивостью, дискомфортом и другими изменениями состояния дёсен.',
+    intro: 'Пародонтолог оценивает состояние дёсен и тканей вокруг зубов, уточняет причину жалоб и составляет план ухода и лечения.',
+    image: '/images/services/periodontology-editorial.webp',
+    imageAvif: '/images/services/periodontology-editorial.avif',
+    imageAlt: 'Модель зубов и дёсен для консультации пародонтолога',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: ['Дёсны кровоточат', 'Появился неприятный запах', 'Дёсны стали чувствительными', 'Зубы кажутся подвижными'],
+    highlights: ['Консультация пародонтолога', 'Профессиональная гигиена по показаниям', 'Лечение воспаления дёсен', 'Поддерживающее наблюдение'],
+    technologies: ['Диагностика состояния дёсен', 'Измерение пародонтальных показателей', 'Индивидуальный план гигиены'],
+    steps: ['Осмотр дёсен', 'Диагностика', 'План лечения и домашнего ухода', 'Контроль состояния'],
+    faq: [
+      { question: 'Кровоточивость дёсен — повод обратиться к врачу?', answer: 'Да. Причину лучше уточнить на осмотре, особенно если симптом повторяется.' },
+      { question: 'Достаточно ли профессиональной чистки?', answer: 'Это зависит от состояния дёсен. Врач определит необходимый объём после осмотра.' },
+    ],
+    icon: HeartPulse,
+  },
+  {
+    id: 'gnathology',
+    shortTitle: 'Гнатология',
+    title: 'Приём гнатолога',
+    eyebrow: 'Прикус и височно-нижнечелюстной сустав',
+    description: 'Разбираемся с дискомфортом в челюсти, щелчками и вопросами, связанными с прикусом.',
+    intro: 'Гнатолог оценивает работу зубочелюстной системы: прикус, движения нижней челюсти и состояние сустава. Дальнейшие исследования назначаются по показаниям.',
+    image: '/images/services/gnathology-editorial.webp',
+    imageAvif: '/images/services/gnathology-editorial.avif',
+    imageAlt: 'Анатомическая модель челюсти и височно-нижнечелюстного сустава',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: ['Щёлкает или болит челюсть', 'Трудно широко открыть рот', 'Беспокоит напряжение жевательных мышц', 'Нужна оценка прикуса перед лечением'],
+    highlights: ['Консультация гнатолога', 'Оценка прикуса', 'Оценка движений нижней челюсти', 'Планирование дальнейшего лечения'],
+    technologies: ['Цифровое сканирование', 'Функциональная диагностика по показаниям', 'Совместное планирование со смежными специалистами'],
+    steps: ['Сбор жалоб', 'Осмотр и функциональная оценка', 'Диагностика по показаниям', 'Обсуждение плана'],
+    faq: [
+      { question: 'С какими симптомами идут к гнатологу?', answer: 'Частые причины — щелчки, боль или ограничение движения челюсти и вопросы, связанные с прикусом.' },
+      { question: 'Нужны ли снимки?', answer: 'Необходимость исследований определяет врач после первичного осмотра.' },
+    ],
+    icon: ShieldPlus,
+  },
+  {
+    id: 'diagnostics',
+    shortTitle: 'Диагностика',
+    title: 'КТ, ОПТГ и снимки зубов',
+    eyebrow: 'Цифровая диагностика',
+    description: 'Проводим КТ зубов, панорамные и прицельные снимки для диагностики и планирования лечения.',
+    intro: 'Врач выбирает вид снимка в зависимости от задачи. Исследование помогает оценить состояние зубов, корней, кости и соседних структур.',
+    image: '/images/equipment/digital-3d-diagnostics-v2.webp',
+    imageAvif: '/images/equipment/digital-3d-diagnostics-v2.avif',
+    imageAlt: 'Аппарат цифровой диагностики зубов',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: ['Нужно сделать КТ зубов', 'Нужен панорамный снимок ОПТГ', 'Врач направил на прицельный снимок', 'Нужно подготовиться к имплантации или лечению'],
+    highlights: ['КТ зубов', 'ОПТГ', 'Прицельный снимок', 'Данные для цифрового планирования'],
+    technologies: ['Цифровая 3D-диагностика', 'Панорамная диагностика', 'Прицельная рентгенография'],
+    steps: ['Уточнение направления', 'Проведение исследования', 'Получение снимка', 'Интерпретация лечащим врачом'],
+    faq: [
+      { question: 'Какой снимок мне нужен?', answer: 'Тип исследования зависит от задачи. Если направления нет, сначала запишитесь на консультацию врача.' },
+      { question: 'Нужно ли готовиться к снимку?', answer: 'Администратор сообщит актуальные требования при записи.' },
+    ],
+    icon: ScanLine,
+  },
+  {
+    id: 'emergency',
+    shortTitle: 'Неотложная помощь',
+    title: 'Неотложная стоматология для взрослых',
+    eyebrow: 'Когда больно сейчас',
+    description: 'При острой боли или внезапной проблеме поможем быстро определить причину и следующий шаг.',
+    intro: 'При неотложном обращении задача врача — осмотреть проблемную область, провести необходимую диагностику и предложить допустимый вариант помощи.',
+    image: '/images/services/emergency-editorial.webp',
+    imageAvif: '/images/services/emergency-editorial.avif',
+    imageAlt: 'Пациентка с зубным дискомфортом',
+    imagePosition: 'center',
+    imageSource: 'generated',
+    problems: ['Острая зубная боль', 'Сломался зуб или выпала пломба', 'Появился отёк или выраженный дискомфорт', 'Нужен срочный осмотр стоматолога'],
+    highlights: ['Осмотр врача', 'Диагностика по показаниям', 'Неотложная помощь', 'План дальнейшего лечения'],
+    technologies: ['Прицельный снимок по показаниям', 'Микроскоп при необходимости', 'Связь со смежным специалистом'],
+    steps: ['Звонок в клинику', 'Срочный осмотр', 'Диагностика причины', 'Помощь и дальнейший план'],
+    faq: [
+      { question: 'Можно ли обратиться в день звонка?', answer: 'Позвоните администратору: он проверит ближайшее доступное время и уточнит характер жалобы.' },
+      { question: 'Что делать до приёма?', answer: 'Администратор поможет с организационными вопросами. Медицинские рекомендации врач даст после оценки состояния.' },
+    ],
+    icon: Siren,
   },
 ];
 
@@ -100,7 +254,7 @@ export const DOCTORS: DoctorPlaceholder[] = [
     id: 'surgeon',
     specialty: 'Стоматолог-хирург, имплантолог',
     description: 'Хирургическое лечение, имплантация и костная пластика.',
-    serviceId: 'laser-surgery',
+    serviceId: 'surgery',
   },
   {
     id: 'orthopedist',
@@ -112,7 +266,7 @@ export const DOCTORS: DoctorPlaceholder[] = [
     id: 'therapist',
     specialty: 'Стоматолог-терапевт, эндодонтист',
     description: 'Лечение кариеса и корневых каналов с применением микроскопа.',
-    serviceId: 'therapy',
+    serviceId: 'microscope-treatment',
   },
   {
     id: 'orthodontist',
@@ -120,7 +274,226 @@ export const DOCTORS: DoctorPlaceholder[] = [
     description: 'Диагностика прикуса, лечение на элайнерах и брекет-системах.',
     serviceId: 'orthodontics',
   },
+  {
+    id: 'periodontist',
+    specialty: 'Стоматолог-пародонтолог',
+    description: 'Диагностика и лечение заболеваний дёсен.',
+    serviceId: 'periodontology',
+  },
+  {
+    id: 'gnathologist',
+    specialty: 'Стоматолог-гнатолог',
+    description: 'Прикус, жевательные мышцы и височно-нижнечелюстной сустав.',
+    serviceId: 'gnathology',
+  },
 ];
+
+export const DOCTOR_PREVIEWS: DoctorPreview[] = [
+  {
+    id: 'founder',
+    role: 'Основатель Perfect Dental',
+    description: 'Создатель клиники и участник врачебной команды Perfect Dental.',
+    image: {
+      src: '/images/team/founder-portrait.webp',
+      avif: '/images/team/founder-portrait.avif',
+      alt: 'Основатель клиники Perfect Dental',
+      width: 1200,
+      height: 1800,
+      position: 'center top',
+      source: 'client',
+    },
+  },
+  {
+    id: 'doctor-02',
+    role: 'Врач Perfect Dental',
+    description: 'Реальный специалист клиники. Профессиональная анкета находится на согласовании.',
+    image: {
+      src: '/images/team/doctor-portrait-02.webp',
+      avif: '/images/team/doctor-portrait-02.avif',
+      alt: 'Врач клиники Perfect Dental',
+      width: 1200,
+      height: 1800,
+      position: 'center top',
+      source: 'client',
+    },
+  },
+  {
+    id: 'doctor-03',
+    role: 'Врач Perfect Dental',
+    description: 'Реальный специалист клиники. Профессиональная анкета находится на согласовании.',
+    image: {
+      src: '/images/team/doctor-portrait-03.webp',
+      avif: '/images/team/doctor-portrait-03.avif',
+      alt: 'Врач клиники Perfect Dental',
+      width: 1200,
+      height: 1800,
+      position: 'center top',
+      source: 'client',
+    },
+  },
+  {
+    id: 'doctor-04',
+    role: 'Врач Perfect Dental',
+    description: 'Реальный специалист клиники. Профессиональная анкета находится на согласовании.',
+    image: {
+      src: '/images/team/doctor-portrait-04.webp',
+      avif: '/images/team/doctor-portrait-04.avif',
+      alt: 'Врач клиники Perfect Dental в стоматологическом кабинете',
+      width: 1200,
+      height: 1800,
+      position: 'center top',
+      source: 'client',
+    },
+  },
+];
+
+export const ILLUSTRATIVE_CASES: IllustrativeCase[] = [
+  {
+    id: 'alignment',
+    title: 'Коррекция положения зубов',
+    eyebrow: 'Ортодонтия',
+    serviceId: 'orthodontics',
+    summary: 'Пример того, как врач оценивает положение передних зубов и планирует их последовательное перемещение.',
+    focus: ['Диагностика прикуса', 'Выбор между элайнерами и брекетами', 'Контроль движения зубов'],
+    before: {
+      src: '/images/results/orthodontics-before.webp',
+      avif: '/images/results/orthodontics-before.avif',
+      alt: 'Иллюстрация неровного положения передних зубов до ортодонтической коррекции',
+      width: 900,
+      height: 1200,
+      source: 'generated',
+    },
+    after: {
+      src: '/images/results/orthodontics-after.webp',
+      avif: '/images/results/orthodontics-after.avif',
+      alt: 'Иллюстрация положения передних зубов после ортодонтической коррекции',
+      width: 900,
+      height: 1200,
+      source: 'generated',
+    },
+  },
+  {
+    id: 'anterior-restoration',
+    title: 'Восстановление формы зуба',
+    eyebrow: 'Эстетическая реставрация',
+    serviceId: 'orthopedics',
+    summary: 'Пример задачи, при которой врач оценивает форму, оттенок и функцию зуба, а затем выбирает подходящий способ восстановления.',
+    focus: ['Оценка тканей зуба', 'Подбор формы и оттенка', 'Сохранение естественного вида'],
+    before: {
+      src: '/images/results/restoration-before.webp',
+      avif: '/images/results/restoration-before.avif',
+      alt: 'Иллюстрация небольшого скола переднего зуба до восстановления',
+      width: 900,
+      height: 1200,
+      source: 'generated',
+    },
+    after: {
+      src: '/images/results/restoration-after.webp',
+      avif: '/images/results/restoration-after.avif',
+      alt: 'Иллюстрация переднего зуба после восстановления естественной формы',
+      width: 900,
+      height: 1200,
+      source: 'generated',
+    },
+  },
+  {
+    id: 'caries-restoration',
+    title: 'Лечение кариеса и реставрация',
+    eyebrow: 'Терапия',
+    serviceId: 'microscope-treatment',
+    summary: 'Пример того, как может выглядеть локальная терапевтическая задача до лечения и после восстановления анатомии зуба.',
+    focus: ['Диагностика глубины поражения', 'Работа с увеличением по показаниям', 'Восстановление анатомии зуба'],
+    before: {
+      src: '/images/results/therapy-before.webp',
+      avif: '/images/results/therapy-before.avif',
+      alt: 'Иллюстрация кариозного поражения жевательного зуба до лечения',
+      width: 900,
+      height: 1200,
+      source: 'generated',
+    },
+    after: {
+      src: '/images/results/therapy-after.webp',
+      avif: '/images/results/therapy-after.avif',
+      alt: 'Иллюстрация жевательного зуба после восстановления композитным материалом',
+      width: 900,
+      height: 1200,
+      source: 'generated',
+    },
+  },
+];
+
+export const INSTAGRAM_STORIES: InstagramPost[] = [
+  {
+    id: 'implantation-aesthetics',
+    title: 'Имплантация и эстетика',
+    category: 'История из практики',
+    summary: 'История лечения из практики основателя Perfect Dental.',
+    url: 'https://www.instagram.com/p/DbxBl6_MUnZ/',
+  },
+  {
+    id: 'same-day-implantation',
+    title: 'Одномоментная имплантация',
+    category: 'История пациентки',
+    summary: 'Пациентка делится впечатлениями после удаления зуба, установки импланта и временной конструкции.',
+    url: 'https://www.instagram.com/p/DbUyFX-os2G/',
+  },
+  {
+    id: 'veneers-story',
+    title: 'Виниры и новая улыбка',
+    category: 'История пациентки',
+    summary: 'Рассказ пациентки о выборе клиники и эстетическом лечении.',
+    url: 'https://www.instagram.com/p/Db09nhHIbEd/',
+  },
+  {
+    id: 'patient-story',
+    title: 'История пациента Perfect Dental',
+    category: 'Опыт лечения',
+    summary: 'Публикация врача клиники о работе с пациентом.',
+    url: 'https://www.instagram.com/p/Dac00TkI0nD/',
+  },
+  {
+    id: 'fifteen-years',
+    title: 'Лечение и наблюдение спустя 15 лет',
+    category: 'Долгосрочная история',
+    summary: 'История пациента об имплантах, коронках, наблюдении и последующем эстетическом лечении.',
+    url: 'https://www.instagram.com/p/DaKI3Buocbv/',
+  },
+];
+
+export const INSTAGRAM_CASES: InstagramPost[] = [
+  {
+    id: 'restoration-result',
+    title: 'Реставрация жевательного зуба',
+    category: 'До и после',
+    summary: 'Восстановление формы, контактного пункта и жевательной поверхности зуба.',
+    url: 'https://www.instagram.com/p/DZxkfcRN-Tj/',
+  },
+  {
+    id: 'natural-smile',
+    title: 'Эстетическое восстановление улыбки',
+    category: 'До и после',
+    summary: 'Работа с формой, оттенком и естественным видом улыбки.',
+    url: 'https://www.instagram.com/p/DaLkZVBCGRn/?img_index=4',
+  },
+  {
+    id: 'braces-veneers',
+    title: 'Брекеты и виниры: комплексное лечение',
+    category: 'До и после',
+    summary: 'Ортодонтический этап на брекетах и последующее эстетическое восстановление.',
+    url: 'https://www.instagram.com/p/DaLjc4cCDdm/?img_index=3',
+  },
+];
+
+export const PATIENT_PROBLEMS = [
+  { label: 'Болит зуб', description: 'Острая боль или внезапная проблема', serviceId: 'emergency' },
+  { label: 'Нужно вылечить зуб', description: 'Кариес, пломба или корневые каналы', serviceId: 'microscope-treatment' },
+  { label: 'Нужен имплант', description: 'Нет одного или нескольких зубов', serviceId: 'implantation' },
+  { label: 'Хочу исправить прикус', description: 'Элайнеры или брекет-система', serviceId: 'orthodontics' },
+  { label: 'Нужна коронка или виниры', description: 'Восстановление формы и функции', serviceId: 'orthopedics' },
+  { label: 'Беспокоят дёсны', description: 'Кровоточивость или дискомфорт', serviceId: 'periodontology' },
+  { label: 'Щёлкает или болит челюсть', description: 'Консультация гнатолога', serviceId: 'gnathology' },
+  { label: 'Нужно сделать КТ или снимок', description: 'КТ, ОПТГ или прицельный снимок', serviceId: 'diagnostics' },
+] as const satisfies ReadonlyArray<{ label: string; description: string; serviceId: ServiceItem['id'] }>;
 
 export const EQUIPMENT: EquipmentItem[] = [
   {
@@ -130,7 +503,7 @@ export const EQUIPMENT: EquipmentItem[] = [
     description:
       'Лазерная система используется врачом по показаниям в хирургических и терапевтических протоколах.',
     benefits: ['Контролируемое воздействие', 'Комфорт во время процедур', 'Современный рабочий протокол'],
-    image: '/images/equipment/doctor-smile-pluser.webp',
+    image: '/images/equipment/doctor-smile-pluser-v2.webp',
     alt: 'Стоматологический лазер Doctor Smile Pluser в Perfect Dental',
   },
   {
@@ -139,7 +512,7 @@ export const EQUIPMENT: EquipmentItem[] = [
     description:
       'Трёхмерные снимки помогают врачу оценить анатомию и спланировать лечение до начала процедуры.',
     benefits: ['Объёмное изображение', 'Точное планирование', 'Данные для комплексного лечения'],
-    image: '/images/equipment/digital-3d-diagnostics.webp',
+    image: '/images/equipment/digital-3d-diagnostics-v2.webp',
     alt: 'Оборудование для цифровой 3D-диагностики зубов',
   },
   {
@@ -148,7 +521,7 @@ export const EQUIPMENT: EquipmentItem[] = [
     description:
       'Цифровой сканер создаёт трёхмерную модель зубов для планирования ортопедического и ортодонтического лечения.',
     benefits: ['Цифровая модель зубов', 'Комфортное сканирование', 'Точная передача данных'],
-    image: '/images/equipment/intraoral-scanner.webp',
+    image: '/images/equipment/intraoral-scanner-v2.webp',
     alt: 'Внутриротовой цифровой сканер для создания 3D-модели зубов',
   },
 ];
@@ -156,21 +529,39 @@ export const EQUIPMENT: EquipmentItem[] = [
 export const REVIEWS: ReviewItem[] = [
   {
     author: 'Ринат Имангельдинов',
+    initials: 'РИ',
+    date: '9 апреля 2026',
     text: 'Профессиональный подход, квалифицированные специалисты. Думаю, не нужно экспериментировать, а обслуживаться у профессионалов.',
     sourceUrl: `${TWO_GIS_URL}/tab/reviews`,
   },
   {
-    author: 'Юлия Суменко',
-    text: 'Всё прошло быстро, качественно и совершенно безболезненно. Осталась очень довольна.',
+    author: 'Алия Капанова',
+    initials: 'АК',
+    date: '15 января 2026',
+    text: 'Здесь действительно сочетаются качество медицинской помощи и человеческое отношение.',
     sourceUrl: `${TWO_GIS_URL}/tab/reviews`,
   },
   {
-    author: 'Gulnaz Gulnaz',
-    text: 'Профессионализм от начала консультации до завершения работ. Все внимательные и вежливые.',
+    author: 'Ольга Мамедова',
+    initials: 'ОМ',
+    date: '29 сентября 2025',
+    text: 'Всё прошло идеально — быстро и совершенно без боли. Даже не ожидала, что удаление зуба мудрости может пройти так спокойно.',
+    sourceUrl: `${TWO_GIS_URL}/tab/reviews`,
+  },
+  {
+    author: 'Юлия Суменко',
+    initials: 'ЮС',
+    date: '14 января 2025',
+    text: 'Всё прошло быстро, качественно и совершенно безболезненно. Осталась очень довольна.',
     sourceUrl: `${TWO_GIS_URL}/tab/reviews`,
   },
 ];
 
 export function getService(id: string | undefined) {
-  return SERVICES.find((service) => service.id === id);
+  const aliases: Record<string, ServiceItem['id']> = {
+    'laser-surgery': 'surgery',
+    therapy: 'microscope-treatment',
+  };
+  const resolvedId = id ? aliases[id] ?? id : undefined;
+  return SERVICES.find((service) => service.id === resolvedId);
 }

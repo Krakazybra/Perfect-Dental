@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   isRouteErrorResponse,
   Links,
@@ -59,8 +59,15 @@ export function Layout({ children }: { children: ReactNode }) {
 
 export default function App() {
   const [selection, setSelection] = useState<AppointmentSelection | null>(null);
-  const openAppointment = useCallback((next: AppointmentSelection = {}) => setSelection(next), []);
-  const closeAppointment = useCallback(() => setSelection(null), []);
+  const trigger = useRef<HTMLElement | null>(null);
+  const openAppointment = useCallback((next: AppointmentSelection = {}) => {
+    trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setSelection(next);
+  }, []);
+  const closeAppointment = useCallback(() => {
+    setSelection(null);
+    requestAnimationFrame(() => trigger.current?.focus());
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = selection ? 'hidden' : '';

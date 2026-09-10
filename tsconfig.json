@@ -13,6 +13,7 @@
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "rootDirs": [".", "./.react-router/types"],
     "allowJs": true,
     "jsx": "react-jsx",

@@ -11,7 +11,7 @@ export function MobileBottomNav() {
       <Link to="/" className={itemClass}><House className="size-5" />Главная</Link>
       <Link to="/services" className={itemClass}><Stethoscope className="size-5" />Услуги</Link>
       <button type="button" onClick={() => openAppointment()} className={`${itemClass} text-primary`}><span className="grid size-9 place-items-center rounded-full bg-primary text-white"><CalendarDays className="size-4" /></span>Запись</button>
-      <a href={`https://wa.me/${CLINIC_INFO.whatsappPhone}`} target="_blank" rel="noreferrer" className={`${itemClass} text-[#168c43]`}><MessageCircle className="size-5" />WhatsApp</a>
+      <a href={`https://wa.me/${CLINIC_INFO.whatsappPhone}`} target="_blank" rel="noreferrer" className={`${itemClass} text-primary`}><MessageCircle className="size-5" />WhatsApp</a>
       <a href={`tel:${CLINIC_INFO.phoneHref}`} className={itemClass}><Phone className="size-5" />Звонок</a>
     </nav>
   );

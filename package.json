@@ -6,9 +6,17 @@
   "scripts": {
     "dev": "react-router dev --host 0.0.0.0 --port 3000",
     "build": "react-router build",
-    "preview": "vite preview build/client --host 0.0.0.0 --port 4173",
+    "preview": "node scripts/preview.mjs",
     "typecheck": "react-router typegen && tsc --noEmit",
-    "lint": "npm run typecheck"
+    "lint": "npm run typecheck",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test --project=chromium",
+    "test:mobile": "playwright test --project=mobile",
+    "test:visual": "playwright test --project=visual",
+    "test:a11y": "playwright test --project=a11y",
+    "test:content": "node scripts/check-content.mjs",
+    "check": "npm run typecheck && npm run test:unit && npm run test:content && npm run build"
   },
   "dependencies": {
     "@react-router/node": "7.18.3",
@@ -22,13 +30,24 @@
     "isbot": "^5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@fontsource-variable/manrope": "^5.2.6",
+    "@playwright/test": "^1.55.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "@react-router/dev": "^7.18.3",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.0",
+    "jsdom": "^26.1.0",
+    "sharp": "^0.34.3",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.3",
+    "vitest": "^3.2.4"
   }
 }

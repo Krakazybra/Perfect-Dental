@@ -3,7 +3,10 @@ build/
 .react-router/
 dist/
 coverage/
+test-results/
+playwright-report/
 .DS_Store
 *.log
 .env*
 !.env.example
+.vercel

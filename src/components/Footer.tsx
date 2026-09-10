@@ -24,7 +24,7 @@ export function Footer() {
           <div className="mt-4 space-y-4 text-sm text-on-surface-variant">
             <a href={TWO_GIS_ROUTE_URL} target="_blank" rel="noreferrer" className="flex gap-3 hover:text-primary"><MapPin className="mt-0.5 size-4 shrink-0 text-primary" />{CLINIC_INFO.address}</a>
             <a href={`tel:${CLINIC_INFO.phoneHref}`} className="flex gap-3 hover:text-primary"><Phone className="size-4 shrink-0 text-primary" />{CLINIC_INFO.phone}</a>
-            <a href={`https://wa.me/${CLINIC_INFO.whatsappPhone}`} target="_blank" rel="noreferrer" className="flex gap-3 text-[#168c43]"><MessageCircle className="size-4 shrink-0" />WhatsApp</a>
+            <a href={`https://wa.me/${CLINIC_INFO.whatsappPhone}`} target="_blank" rel="noreferrer" className="flex gap-3 text-primary"><MessageCircle className="size-4 shrink-0" />WhatsApp</a>
           </div>
         </div>
         <div>

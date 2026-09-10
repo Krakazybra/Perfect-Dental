@@ -89,7 +89,8 @@ $payload = json_encode([
     'disable_web_page_preview' => true,
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-$url = 'https://api.telegram.org/bot' . $token . '/sendMessage';
+$telegramApiBase = rtrim(getenv('TELEGRAM_API_BASE_URL') ?: 'https://api.telegram.org', '/');
+$url = $telegramApiBase . '/bot' . $token . '/sendMessage';
 $delivered = false;
 if (function_exists('curl_init')) {
     $curl = curl_init($url);
