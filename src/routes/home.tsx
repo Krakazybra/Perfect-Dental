@@ -6,7 +6,7 @@ import { CLINIC_INFO, EQUIPMENT, REVIEWS, TWO_GIS_ROUTE_URL, TWO_GIS_URL } from 
 import { useAppointment } from '../context/AppointmentContext';
 import { createMeta } from '../lib/seo';
 
-export const meta: MetaFunction = () => createMeta('Perfect Dental — стоматология для взрослых в Астане', 'Лечение зубов под микроскопом, имплантация, коронки, брекеты, лечение дёсен и цифровая диагностика в Perfect Dental.');
+export const meta: MetaFunction = () => createMeta('Perfect Dental — современная стоматология в Астане', 'Лечение зубов под микроскопом, имплантация, коронки, брекеты, лечение дёсен и цифровая диагностика в Perfect Dental.');
 
 const HERO_MEDIA = { src: '/images/team/founder-portrait.webp', avif: '/images/team/founder-portrait.avif', alt: 'Основатель клиники Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
 const DIAGNOSTICS_MEDIA = { src: '/images/equipment/digital-3d-diagnostics-v2.webp', avif: '/images/equipment/digital-3d-diagnostics-v2.avif', alt: EQUIPMENT[1].alt, width: 1440, height: 1080, source: 'generated' as const };
@@ -21,7 +21,7 @@ export default function HomeRoute() {
         <div className="section-shell grid min-h-[650px] items-center gap-12 py-14 lg:grid-cols-[1.06fr_.94fr] lg:py-20">
           <div>
             <p className="eyebrow text-primary-fixed">Perfect Dental · Астана</p>
-            <h1 className="mt-5 max-w-3xl text-balance text-5xl font-bold leading-[1.01] tracking-[-0.055em] sm:text-6xl lg:text-7xl">Стоматология для взрослых в Астане</h1>
+            <h1 className="mt-5 max-w-3xl text-balance text-5xl font-bold leading-[1.01] tracking-[-0.055em] sm:text-6xl lg:text-7xl">Современная стоматология в Астане</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-white/75 md:text-lg">Лечение под микроскопом, имплантация, коронки, брекеты и диагностика в одной клинике.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={() => openAppointment()} className="rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-primary transition-colors hover:bg-primary-fixed">Записаться на консультацию</button>
