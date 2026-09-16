@@ -76,20 +76,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .home-page .section-pad { padding-block: 3rem; }
   .home-page .section-heading { gap: .75rem; }
   .home-page .section-heading > div > p.mt-4 { margin-top: .75rem; font-size: .925rem; line-height: 1.55rem; }
-  .home-hero { position: relative; min-height: 700px; }
-  .home-hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(6,28,29,.16) 5%, rgba(6,28,29,.25) 38%, rgba(6,28,29,.96) 100%); pointer-events: none; }
-  .home-hero > .section-shell { position: relative; display: flex; width: 100%; min-height: 700px; justify-content: flex-end; padding: 5rem 1.25rem 1.5rem; }
-  .home-hero-copy { position: relative; z-index: 2; }
-  .home-hero-copy h1 { max-width: 21rem; font-size: 2.55rem; line-height: 1; }
-  .home-hero-copy > p:nth-of-type(2) { max-width: 20rem; color: rgba(255,255,255,.82); }
-  .home-hero-copy > div { display: grid; grid-template-columns: 1fr auto; }
-  .home-hero-copy > div > a { width: 3.25rem; overflow: hidden; padding-inline: 0; white-space: nowrap; font-size: 0; }
-  .home-hero-copy > div > a svg { width: 1.1rem; height: 1.1rem; }
-  .home-hero-media { position: absolute; inset: 0; z-index: 0; max-width: none; }
-  .home-hero-media > div:first-child { display: none; }
-  .home-hero-media > div:last-child { position: absolute; inset: 0; border: 0; border-radius: 0; background: transparent; padding: 0; box-shadow: none; }
-  .home-hero-media figure { height: 100%; border-radius: 0; }
-  .home-hero-media figure img { object-position: center top !important; }
+  .home-hero { position: relative; min-height: 0; isolation: isolate; }
+  .home-hero::before { content: ""; position: absolute; top: -4.5rem; right: -6rem; z-index: 0; width: 18rem; height: 18rem; background: url('/images/brand/perfect-dental-mark.png') center / contain no-repeat; opacity: .075; filter: invert(1); pointer-events: none; transform: rotate(8deg); }
+  .home-hero::after { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(circle at 92% 8%, rgba(188,235,239,.16), transparent 38%), linear-gradient(145deg, transparent 58%, rgba(255,255,255,.045)); pointer-events: none; }
+  .home-hero > .section-shell { position: relative; z-index: 1; display: block; width: min(100% - 2.5rem, 1280px); min-height: 0; padding: 3.4rem 0 3rem; }
+  .home-hero-copy { position: relative; z-index: 1; }
+  .home-hero-copy h1 { max-width: 21rem; font-size: clamp(2.55rem, 12vw, 3.25rem); line-height: .98; }
+  .home-hero-copy > p:nth-of-type(2) { max-width: 21rem; color: rgba(255,255,255,.76); }
+  .home-hero-copy > div { display: grid; grid-template-columns: 1fr; gap: .7rem; }
+  .home-hero-copy > div > a { width: 100%; min-height: 3.15rem; overflow: visible; padding-inline: 1.25rem; white-space: normal; font-size: .875rem; }
+  .home-hero-copy > p:last-child { display: inline-flex; margin-top: 1.25rem; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; background: rgba(255,255,255,.07); padding: .55rem .8rem; color: rgba(255,255,255,.68); font-size: .72rem; line-height: 1rem; }
+  .home-hero-media { display: none; }
   .patient-problem-grid { display: flex; margin-inline: -1.25rem; gap: .75rem; overflow-x: auto; padding: .15rem 1.25rem 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .patient-problem-grid::-webkit-scrollbar, .editorial-service-grid::-webkit-scrollbar { display: none; }
   .patient-problem-grid > a { min-width: min(72vw, 270px); min-height: 9rem; scroll-snap-align: start; }
