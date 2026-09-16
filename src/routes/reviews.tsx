@@ -6,7 +6,7 @@ import { INSTAGRAM_STORIES, REVIEWS, TWO_GIS_URL } from '../data/clinicData';
 import { createMeta } from '../lib/seo';
 import type { ReviewItem } from '../types';
 
-export const meta: MetaFunction = () => createMeta('Отзывы о стоматологии Perfect Dental в Астане', 'Реальные отзывы пациентов Perfect Dental и ссылка на оригинальные публикации в 2GIS.', '/reviews');
+export const meta: MetaFunction = () => createMeta('Отзывы о стоматологии Perfect Dental в Астане', 'Отзывы пациентов Perfect Dental в 2GIS и истории лечения из публикаций клиники в Instagram.', '/reviews');
 
 function ReviewCard({ review, featured = false }: { review: ReviewItem; featured?: boolean }) {
   return (
@@ -63,8 +63,8 @@ export default function ReviewsRoute() {
           description="В этих публикациях пациенты и врачи рассказывают о лечении подробнее. Видео и карусели можно открыть прямо на странице."
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="lg:col-span-2"><InstagramPostCard post={featuredStory} featured /></div>
-          {moreStories.map((post) => <InstagramPostCard key={post.id} post={post} />)}
+          <div className="lg:col-span-2"><InstagramPostCard post={featuredStory} autoLoad featured /></div>
+          {moreStories.map((post) => <InstagramPostCard key={post.id} post={post} autoLoad />)}
         </div>
       </div>
     </section>

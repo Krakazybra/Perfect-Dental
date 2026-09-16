@@ -8,10 +8,10 @@ import { createMeta } from '../lib/seo';
 
 export const meta: MetaFunction = () => createMeta('Perfect Dental — современная стоматология в Астане', 'Лечение зубов под микроскопом, имплантация, коронки, брекеты, лечение дёсен и цифровая диагностика в Perfect Dental.');
 
-const HERO_MEDIA = { src: '/images/team/founder-portrait.webp', avif: '/images/team/founder-portrait.avif', alt: 'Основатель клиники Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
+const HERO_MEDIA = { src: '/images/team/founder-portrait.webp', avif: '/images/team/founder-portrait.avif', alt: 'Нуртазин Женис Муратбекович — основатель стоматологии Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
 const DIAGNOSTICS_MEDIA = { src: '/images/equipment/digital-3d-diagnostics-v2.webp', avif: '/images/equipment/digital-3d-diagnostics-v2.avif', alt: EQUIPMENT[1].alt, width: 1440, height: 1080, source: 'generated' as const };
-const TEAM_MEDIA_02 = { src: '/images/team/doctor-portrait-02.webp', avif: '/images/team/doctor-portrait-02.avif', alt: 'Врач клиники Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
-const TEAM_MEDIA_03 = { src: '/images/team/doctor-portrait-03.webp', avif: '/images/team/doctor-portrait-03.avif', alt: 'Врач клиники Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
+const TEAM_MEDIA_02 = { src: '/images/team/doctor-portrait-02.webp', avif: '/images/team/doctor-portrait-02.avif', alt: 'Авленова Айман Таласовна — врач-терапевт Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
+const TEAM_MEDIA_03 = { src: '/images/team/doctor-portrait-03.webp', avif: '/images/team/doctor-portrait-03.avif', alt: 'Айтым Марлен — стоматолог-терапевт, хирург и ортопед Perfect Dental', width: 1200, height: 1800, position: 'center top', source: 'client' as const };
 
 export default function HomeRoute() {
   const { openAppointment } = useAppointment();

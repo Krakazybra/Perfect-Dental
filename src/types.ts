@@ -66,8 +66,9 @@ export interface DoctorProfile {
 
 export interface DoctorPreview {
   id: string;
+  name: string;
   role: string;
-  description: string;
+  specialty: string;
   image: MediaAsset;
 }
 

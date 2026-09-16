@@ -291,12 +291,13 @@ export const DOCTORS: DoctorPlaceholder[] = [
 export const DOCTOR_PREVIEWS: DoctorPreview[] = [
   {
     id: 'founder',
-    role: 'Основатель Perfect Dental',
-    description: 'Создатель клиники и участник врачебной команды Perfect Dental.',
+    name: 'Нуртазин Женис Муратбекович',
+    role: 'Основатель стоматологии Perfect Dental',
+    specialty: 'Хирург-имплантолог, ортопед',
     image: {
       src: '/images/team/founder-portrait.webp',
       avif: '/images/team/founder-portrait.avif',
-      alt: 'Основатель клиники Perfect Dental',
+      alt: 'Нуртазин Женис Муратбекович — основатель стоматологии Perfect Dental',
       width: 1200,
       height: 1800,
       position: 'center top',
@@ -305,12 +306,13 @@ export const DOCTOR_PREVIEWS: DoctorPreview[] = [
   },
   {
     id: 'doctor-02',
+    name: 'Авленова Айман Таласовна',
     role: 'Врач Perfect Dental',
-    description: 'Реальный специалист клиники. Профессиональная анкета находится на согласовании.',
+    specialty: 'Врач-терапевт',
     image: {
       src: '/images/team/doctor-portrait-02.webp',
       avif: '/images/team/doctor-portrait-02.avif',
-      alt: 'Врач клиники Perfect Dental',
+      alt: 'Авленова Айман Таласовна — врач-терапевт Perfect Dental',
       width: 1200,
       height: 1800,
       position: 'center top',
@@ -319,12 +321,13 @@ export const DOCTOR_PREVIEWS: DoctorPreview[] = [
   },
   {
     id: 'doctor-03',
+    name: 'Айтым Марлен',
     role: 'Врач Perfect Dental',
-    description: 'Реальный специалист клиники. Профессиональная анкета находится на согласовании.',
+    specialty: 'Стоматолог-терапевт, хирург, ортопед',
     image: {
       src: '/images/team/doctor-portrait-03.webp',
       avif: '/images/team/doctor-portrait-03.avif',
-      alt: 'Врач клиники Perfect Dental',
+      alt: 'Айтым Марлен — стоматолог-терапевт, хирург и ортопед Perfect Dental',
       width: 1200,
       height: 1800,
       position: 'center top',
@@ -333,12 +336,13 @@ export const DOCTOR_PREVIEWS: DoctorPreview[] = [
   },
   {
     id: 'doctor-04',
+    name: 'Инкарбек Асылбек',
     role: 'Врач Perfect Dental',
-    description: 'Реальный специалист клиники. Профессиональная анкета находится на согласовании.',
+    specialty: 'Стоматолог-терапевт',
     image: {
       src: '/images/team/doctor-portrait-04.webp',
       avif: '/images/team/doctor-portrait-04.avif',
-      alt: 'Врач клиники Perfect Dental в стоматологическом кабинете',
+      alt: 'Инкарбек Асылбек — стоматолог-терапевт Perfect Dental',
       width: 1200,
       height: 1800,
       position: 'center top',

@@ -17,7 +17,7 @@ export const meta: MetaFunction = () => createMeta(
 const HERO_MEDIA = {
   src: '/images/team/founder-portrait.webp',
   avif: '/images/team/founder-portrait.avif',
-  alt: 'Основатель стоматологии Perfect Dental',
+  alt: 'Нуртазин Женис Муратбекович — основатель стоматологии Perfect Dental',
   width: 1200,
   height: 1800,
   position: 'center top',
@@ -33,7 +33,7 @@ export default function DoctorsRoute() {
         variant="detail-card"
         eyebrow="Команда клиники"
         title="Люди, которые стоят за Perfect Dental"
-        description="Здесь размещены реальные фотографии команды. ФИО, специализации, образование и стаж добавим после подтверждения анкет клиникой."
+        description="Основатель и врачи Perfect Dental работают вместе, чтобы составить понятный и последовательный план лечения."
       >
         <div className="relative mx-auto w-full max-w-[420px]">
           <div className="absolute -inset-8 rounded-full bg-primary-fixed/10 blur-3xl" aria-hidden="true" />
@@ -45,18 +45,18 @@ export default function DoctorsRoute() {
         <SectionHeading
           eyebrow="Знакомство"
           title="Команда Perfect Dental"
-          description="Не подменяем недостающие сведения вымышленными регалиями — показываем только то, что уже подтверждено клиникой."
+          description="Познакомьтесь со специалистами клиники и выберите врача или оставьте подбор администратору."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {DOCTOR_PREVIEWS.map((doctor) => (
             <article key={doctor.id} className="group overflow-hidden rounded-[28px] border border-outline-variant/55 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-xl">
               <MediaFrame media={doctor.image} className="aspect-[2/3] rounded-none bg-surface-container-low" />
               <div className="p-6">
-                <p className="eyebrow text-primary">Команда клиники</p>
-                <h2 className="mt-2 text-xl font-bold">{doctor.role}</h2>
-                <p className="mt-3 text-sm leading-6 text-on-surface-variant">{doctor.description}</p>
-                <button type="button" onClick={() => openAppointment()} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  Записаться в клинику <ArrowRight className="size-4" aria-hidden="true" />
+                <p className="eyebrow text-primary">{doctor.role}</p>
+                <h2 className="mt-2 text-xl font-bold leading-tight">{doctor.name}</h2>
+                <p className="mt-3 text-sm font-semibold leading-6 text-on-surface-variant">{doctor.specialty}</p>
+                <button type="button" onClick={() => openAppointment({ doctor: doctor.name })} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  Записаться к врачу <ArrowRight className="size-4" aria-hidden="true" />
                 </button>
               </div>
             </article>
