@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { CheckCircle2, CircleAlert, MessageCircle, Phone, Send, X } from 'lucide-react';
-import type { AppointmentResponse } from '../types';
 import type { AppointmentSelection } from '../context/AppointmentContext';
 import { CLINIC_INFO, DOCTORS, DOCTOR_PREVIEWS, SERVICES } from '../data/clinicData';
 import { formatPhone, validateAppointment, type AppointmentFieldErrors } from '../lib/appointment';
@@ -66,10 +65,11 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
   if (!selection) return null;
 
   const whatsappUrl = `https://wa.me/${CLINIC_INFO.whatsappPhone}?text=${encodeURIComponent(
-    `Здравствуйте! Хочу записаться в Perfect Dental.\nИмя: ${form.name || 'не указано'}\nТелефон: ${form.phone || 'не указан'}\nУслуга: ${form.service || 'консультация'}${form.comment ? `\nКомментарий: ${form.comment}` : ''}`,
+    `Здравствуйте! Хочу записаться в Perfect Dental.\nИмя: ${form.name || 'не указано'}\nТелефон: ${form.phone || 'не указан'}\nУслуга: ${form.service || 'консультация'}${form.doctor ? `\nВрач: ${form.doctor}` : ''}${form.comment ? `\nКомментарий: ${form.comment}` : ''}`,
   )}`;
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  // Заявка уходит в WhatsApp клиники: без сервера, ботов и ключей.
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const errors = validateAppointment(form);
     setFieldErrors(errors);
@@ -78,20 +78,12 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
       setStatus('error');
       return;
     }
-    setStatus('sending');
     setErrorMessage('');
-    try {
-      const endpoint = import.meta.env.VITE_APPOINTMENT_API_URL || '/api/appointments.php';
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
-      const result = (await response.json()) as AppointmentResponse;
-      if ('code' in result) throw new Error(result.code);
-      if (!response.ok || !result.ok) throw new Error('DELIVERY_ERROR');
-      setStatus('success');
-    } catch (error) {
-      const code = error instanceof Error ? error.message : '';
-      setErrorMessage(code === 'RATE_LIMIT' ? 'Заявка уже отправлялась недавно. Позвоните нам или напишите в WhatsApp.' : 'Не удалось отправить заявку. Свяжитесь с нами по телефону или в WhatsApp.');
-      setStatus('error');
+    if (form.website === '') {
+      const opened = window.open(whatsappUrl, '_blank', 'noopener');
+      if (!opened) window.location.href = whatsappUrl;
     }
+    setStatus('success');
   }
 
   return (
@@ -106,8 +98,9 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
         {status === 'success' ? (
           <div className="px-6 py-12 text-center md:px-8">
             <CheckCircle2 className="mx-auto size-14 text-primary" />
-            <h3 className="mt-5 text-2xl font-bold">Заявка отправлена</h3>
-            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-on-surface-variant">Спасибо! Администратор Perfect Dental свяжется с вами по указанному номеру.</p>
+            <h3 className="mt-5 text-2xl font-bold">Осталось отправить сообщение</h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-on-surface-variant">Мы открыли WhatsApp с готовым текстом заявки. Нажмите «Отправить» в чате, и администратор Perfect Dental ответит вам.</p>
+            <a href={whatsappUrl} target="_blank" rel="noreferrer" className="mx-auto mt-5 flex w-fit items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white"><MessageCircle className="size-4" />Открыть WhatsApp ещё раз</a>
             <button type="button" onClick={closeModal} className="mt-6 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white">Закрыть</button>
           </div>
         ) : (
@@ -122,7 +115,7 @@ export function AppointmentModal({ selection, onClose }: AppointmentModalProps) 
             <label className="sr-only" aria-hidden="true">Не заполняйте это поле<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} /></label>
             <div><label className="flex items-start gap-3 text-xs leading-5 text-on-surface-variant"><input required type="checkbox" checked={form.consent} onChange={(e) => { setForm({ ...form, consent: e.target.checked }); setFieldErrors((current) => ({ ...current, consent: undefined })); }} aria-invalid={Boolean(fieldErrors.consent)} aria-describedby={fieldErrors.consent ? 'appointment-consent-error' : undefined} className="mt-1 size-4 accent-primary" /><span>Я согласен(на) на обработку персональных данных согласно <a href="/privacy" target="_blank" className="underline">политике конфиденциальности</a>.</span></label>{fieldErrors.consent ? <span id="appointment-consent-error" className="ml-7 mt-1.5 block text-xs font-medium text-red-700">{fieldErrors.consent}</span> : null}</div>
             {status === 'error' && <div role="alert" className="flex gap-3 rounded-xl bg-red-50 p-3 text-sm text-red-800"><CircleAlert className="size-5 shrink-0" />{errorMessage}</div>}
-            <button disabled={status === 'sending'} type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-white disabled:cursor-wait disabled:opacity-60"><Send className="size-4" />{status === 'sending' ? 'Отправляем…' : 'Отправить заявку'}</button>
+            <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-white"><Send className="size-4" />Отправить заявку в WhatsApp</button>
             {status === 'error' && <div className="grid gap-2 sm:grid-cols-2"><a href={`tel:${CLINIC_INFO.phoneHref}`} className="flex items-center justify-center gap-2 rounded-xl border border-outline-variant px-4 py-3 text-sm font-semibold"><Phone className="size-4" />Позвонить</a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-semibold text-white"><MessageCircle className="size-4" />WhatsApp</a></div>}
           </form>
         )}
