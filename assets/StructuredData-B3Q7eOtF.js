@@ -1,0 +1,1 @@
+import{p as n}from"./chunk-BV7QT456-wYfpMJQg.js";function e({data:t}){const r=JSON.stringify(t).replace(/</g,"\\u003c");return n.jsx("script",{type:"application/ld+json",dangerouslySetInnerHTML:{__html:r}})}export{e as S};
